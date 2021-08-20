@@ -12,6 +12,8 @@ const UEditProfile = () => {
     const {request, loading} = useHttp()
     const {token, userId} = useContext(AuthContext)
     const [files, setFiles] = useState([])
+    const [number, setNumber] = useState('')
+    const [email, setEmail] = useState('')
 
     const getUser = useCallback(async () => {
         try{
@@ -29,6 +31,7 @@ const UEditProfile = () => {
 
     useEffect(() => {
         getUser()
+        
     }, [getUser])
 
     const avatarUpload =  e => {
@@ -36,6 +39,7 @@ const UEditProfile = () => {
             e.preventDefault()
             
             console.log(files)
+            
             let formData = new FormData();
             formData.append('files', files)
 
@@ -47,8 +51,20 @@ const UEditProfile = () => {
             }
 
             axios.put(`http://localhost:5000/contactor/image/uploadAvatar`, formData, {headers: {'Authorization': `Bearer ${token}`}})
-        }catch(e){
+            
 
+            
+        }catch(err){
+            console.log(err)
+        }
+    }
+
+    const updateInfo = async e => {
+        try{
+            const data = await request('http://localhost:5000/contactor/user/updateEmailNumber', 'post', {userId: usrId, email, number}, {'Authorization': `Bearer ${token}`})
+            console.log(data)
+        }catch(err){
+            console.log(err)
         }
     }
 
@@ -66,11 +82,14 @@ const UEditProfile = () => {
                             <h1 class="text-lg bold">Информация о пользователе {!loading && user && user.name}</h1>
                             <img src={`http://localhost:5000/contactor/image/user/${usrId}`} width="150" class="rounded-full my-5" />
                             <div class="my-5 w-3/6 h-full">
-                                {!loading && user &&  <NumberFormat value={user.number} className="block px-2 py-2 w-full border outline-non rounded-lg" format="+7 (###) ###-####" allowEmptyFormatting mask="_" />}
-                                {!loading && user && <input name="field_name" class=" border border-2 rounded-r px-4 py-2 my-3 w-full " type="text" placeholder="Email" value={user.email} />}
+                                {!loading && user &&  <NumberFormat  className="block px-2 py-2 w-full border outline-non rounded-lg" format="+7 (###) ###-####" allowEmptyFormatting mask="_" onChange={e=> setNumber(e.target.value)}/>}
+                                {!loading && user && <input name="field_name" class=" border border-2 rounded-r px-4 py-2 my-3 w-full " type="text" placeholder="Email"  onChange={e=> setEmail(e.target.value)}/>}
                                 {!loading && user &&  <input type = "file" placeholder="Изменить изображение профиля" onChange={selectFile} /> }
                             </div>
-                            <button className="py-3 w-64 text-xl text-white bg-green-500 rounded-2xl" onClick={avatarUpload}>Сохранить</button>
+                            <div className="flex flex-col">
+                            <button className="py-3 my-2 w-64 text-xl text-white bg-green-500 rounded-2xl" onClick={avatarUpload}>Сохранить аватар</button>
+                            <button className="py-3 my-2 w-64 text-xl text-white bg-green-500 rounded-2xl" onClick={updateInfo}>Сохранить данные</button>
+                            </div>
                         </div>
                     </div>
                 </div>
