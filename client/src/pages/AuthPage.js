@@ -11,7 +11,7 @@ const AuthPage = () => {
 
     const loginHander = async e => {
         try{
-            
+            e.preventDefault()
             const data = await request('http://localhost:5000/contactor/authUser/login', 'post', {
                 email, password
             })
