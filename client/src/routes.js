@@ -1,4 +1,5 @@
 import {AuthPage, RegisterPage} from './pages'
+import UProfilePage from './pages/UProfilePage'
 
 export const publicRoutes = [
     {
@@ -8,5 +9,12 @@ export const publicRoutes = [
     {
         path: '/reg',
         Component: RegisterPage
+    }
+]
+
+export const authRoutes = [
+    {
+        path: '/profile',
+        Component: UProfilePage
     }
 ]
