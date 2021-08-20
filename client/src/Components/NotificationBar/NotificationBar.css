@@ -12,6 +12,7 @@
     @apply w-3/12;
     flex-direction: column;
     @apply cursor-default;
+    z-index: 1;
 }
   
 .notification-bar-exit-done
@@ -19,4 +20,5 @@
     @apply w-1/12;
     flex-direction: row;
     @apply cursor-pointer;
+    z-index-: 0;
 }
