@@ -7,7 +7,7 @@ const imageRoutes = require('./imageRoutes')
 const userRoutes = require('./userRoutes')
 
 router.use('/authUser', authRoutes)
-router.use('/image', imageRoutes)
+router.use('/image', authMiddleware, imageRoutes)
 router.use('/user', authMiddleware, userRoutes)
 
 module.exports = router

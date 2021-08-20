@@ -16,10 +16,10 @@ const AuthPage = () => {
             const data = await request('http://localhost:5000/contactor/authUser/login', 'post', {
                 email, password
             })
-            if(data.isActivated === true){
+            
                 auth.login(data.token.accessToken, data.user.id)
                 history.push(`/profile/${data.user.id}`)
-            }
+            
            
         }catch(error){
             console.log(error)

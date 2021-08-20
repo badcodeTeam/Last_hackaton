@@ -20,7 +20,7 @@ export const publicRoutes = [
     {
         path: '/contact_us',
         Component: ContactPage
-    }
+    },
     {
         path: '/residents',
         Component: ResidentsPage
@@ -32,5 +32,10 @@ export const authRoutes = [
     {
         path: '/profile/:id',
         Component: UProfilePage
+    }, 
+    {
+        path: '/edit/user/:id', 
+        Component: UEditProfile
     }
 ]
+
