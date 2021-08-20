@@ -64,7 +64,7 @@ const UEditProfile = () => {
                         
                         <div class="flex flex-col col-auto my-3 items-center"> 
                             <h1 class="text-lg bold">Информация о пользователе {!loading && user && user.name}</h1>
-                            <img src="https://i.imgur.com/S98fN1K.jpg" width="150" class="rounded-full my-5" />
+                            <img src={`http://localhost:5000/contactor/image/user/${usrId}`} width="150" class="rounded-full" />
                             <div class="my-5 w-3/6 h-full">
                                 {!loading && user &&  <NumberFormat value={user.number} className="block px-2 py-2 w-full border outline-non rounded-lg" format="+7 (###) ###-####" allowEmptyFormatting mask="_" />}
                                 {!loading && user && <input name="field_name" class=" border border-2 rounded-r px-4 py-2 my-3 w-full " type="text" placeholder="Email" value={user.email} />}
