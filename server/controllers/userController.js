@@ -12,6 +12,16 @@ class UserController {
             next(e)
         }
     }
+
+    async updateEmailNumber (req, res, next) {
+        try{
+            const {userId, email, number} = req.body
+            const userData = await userService.updateEmailNumber(userId, email, number)
+            return res.json(userData)
+        } catch (e) {
+            next(e)
+        }
+    }
 }
  
 module.exports = new UserController();

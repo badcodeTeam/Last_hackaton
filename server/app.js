@@ -18,6 +18,7 @@ const start = async () => {
         await mongoose.connect(process.env.DB_URL, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
+            useFindAndModify: false
         })
         app.listen(PORT, ()=>console.log('App has been started on port:', PORT))
     } catch (e) {
