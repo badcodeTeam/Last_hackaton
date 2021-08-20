@@ -15,7 +15,7 @@ const NotificationBar = () => {
   return (
     <CSSTransition in={isActive} classNames="notification-bar">
       <div
-        className="border border-black p-2 rounded-md flex justify-center align-center notification-bar"
+        className="border border-green-400 p-2 rounded-md flex justify-center align-center notification-bar ml-auto"
         onClick={() => {
           setActive(!isActive);
         }}
