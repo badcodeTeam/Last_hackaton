@@ -1,6 +1,20 @@
-import React from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
+import {useParams} from "react-router-dom"
 
 const UProfilePage = () => {
+    const [postText, setPostText] = useState('')
+    const [user, setUser] = useState(null)
+    const usrId = useParams().id;
+
+    const getUser = useCallback(async () => {
+        try{
+
+        }catch(e){
+
+        }
+    },[])
+    
+
     return (
         <div className="container">
            <div class="py-10 h-screen w-screen ">
@@ -14,7 +28,10 @@ const UProfilePage = () => {
                     <div class="flex flex-col col-auto my-3 items-center">
                         <button> Связаться </button>
                     </div>
-                    <div class="flex flex-col col-auto my-3 items-center h-3/6 bg-green-100 overflow-y-scroll ">
+                    <div class="flex flex-col col-auto my-3 items-center h-4/6 bg-green-100 overflow-y-scroll ">
+                        <div className="my-5 w-5/6 rounded-full">
+                            <input name="field_name" class=" border border-2 rounded-r px-4 py-2 w-full " type="text" placeholder="Новая запись" />
+                        </div>
                         <div className="flex flex-row my-5 h-2/6 w-5/6 bg-white rounded-lg shadow-md">
                             <img src="https://i.imgur.com/S98fN1K.jpg"   class="my-auto mx-5 rounded-full h-3/6" />
                             <div className="flex flex-col my-auto">
