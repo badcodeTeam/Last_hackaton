@@ -11,6 +11,15 @@ class TokenService {
         }
     }
 
+    validateAcessToken (token) {
+        try{
+            const userData = jwt.verify(token, process.env.SECRET)
+            return userData
+        } catch (e) {
+            return null
+        }
+    }
+
 }
 
 module.exports = new TokenService();
