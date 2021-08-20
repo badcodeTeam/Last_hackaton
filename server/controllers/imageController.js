@@ -3,6 +3,7 @@ const User = require('../models/User')
 const path = require('path')
  
 class ImgController {
+
     async getUserImage(req, res, next){
 
         const userId = req.params.id;
@@ -23,8 +24,7 @@ class ImgController {
 
     async uploadAvatar(req, res, next) {
 
-        сonsole.log(req.files)
-        const file = req.files.files
+        const file = req.files
         
         const token = req.headers.authorization.split(' ')[1] // Bearer asfasnfkajsfnjk
         const decodedToken = jwt.verify(token, process.env.SECRET)
