@@ -1,5 +1,5 @@
 import {AuthPage, RegisterPage} from './pages'
-import MainPage from './pages/MainPage.jsx'
+import MainPage from './pages/MainPage/MainPage.jsx'
 import UProfilePage from './pages/UProfilePage'
 
 export const publicRoutes = [
