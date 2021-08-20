@@ -11,12 +11,10 @@ const AuthPage = () => {
 
     const loginHander = async e => {
         try{
-            
+            e.preventDefault()
             const data = await request('http://localhost:5000/contactor/authUser/login', 'post', {
                 email, password
             })
-
-            console.log(data)
 
             auth.login(data.token.accessToken, data.user.id)
         }catch(error){
@@ -34,7 +32,7 @@ const AuthPage = () => {
                 </div>
                 <div className="space-y-4">
                     <input type="text" placeholder="Email " className="block text-sm py-3 px-4 rounded-lg w-full border outline-none" onChange={e => setEmail(e.target.value)}/>
-                    <input type="text" placeholder="Пароль" className="block text-sm py-3 px-4 rounded-lg w-full border outline-none" onChange={e => setPassword(e.target.value)}/>
+                    <input type="password" placeholder="Пароль" className="block text-sm py-3 px-4 rounded-lg w-full border outline-none" onChange={e => setPassword(e.target.value)}/>
                 </div>
                 <div className="text-center mt-6">
                     <button className="py-3 w-64 text-xl text-white bg-green-300 rounded-2xl" onClick={loginHander}>Войти</button>

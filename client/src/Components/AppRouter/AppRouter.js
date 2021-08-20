@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { publicRoutes } from '../../routes';
 
-export const AppRouter = () => {
+export const AppRouter = ({auth}) => {
     return(
         <Switch>
             {publicRoutes.map(route => {

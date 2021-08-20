@@ -4,7 +4,6 @@ const cors = require('cors')
 const mongoose = require('mongoose')
 const router = require('./routes/mainRoutes')
 
-
 const errorMiddleware = require('./middlewares/errorMiddleware')
 const PORT = process.env.PORT || 5000
 
