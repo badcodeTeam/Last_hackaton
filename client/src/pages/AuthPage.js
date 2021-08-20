@@ -32,7 +32,7 @@ const AuthPage = () => {
             <div className="py-12 px-12 bg-white rounded-2xl shadow-xl z-20">
                 <div>
                     <h1 className="text-3xl font-bold text-center mb-4 cursor-pointer">Войти</h1>
-                    <p className="w-80 text-center text-sm mb-8 font-semibold text-gray-700 tracking-wide cursor-pointer">Войти в учетную запись системы Конкатор</p>
+                    <p className="w-80 text-center text-sm mb-8 font-semibold text-gray-700 tracking-wide cursor-pointer">Войти в учетную запись системы Контактор</p>
                 </div>
                 <div className="space-y-4">
                     <input type="text" placeholder="Email " className="block text-sm py-3 px-4 rounded-lg w-full border outline-none" onChange={e => setEmail(e.target.value)}/>

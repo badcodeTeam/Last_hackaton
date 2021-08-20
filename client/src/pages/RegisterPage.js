@@ -19,6 +19,10 @@ export const RegisterPage = () => {
                 email, password, name, number
             })
 
+            if(data.token.accessToken){
+                setStage(2)
+            }
+
         }catch(error){
             console.log(error)
         }
@@ -28,22 +32,36 @@ export const RegisterPage = () => {
     return(
         <div className="flex justify-center items-center" style={{overflow: 'hidden', height: '100vh'}}>
            
-            <div className="py-12 px-12 bg-white rounded-2xl shadow-xl z-20">
-                <div>
-                    <h1 className="text-3xl font-bold text-center mb-4 cursor-pointer">Регистрация</h1>
-                    <p className="w-80 text-center text-sm mb-8 font-semibold text-gray-700 tracking-wide cursor-pointer">Создать учетную запись системы Конкатор</p>
+            {
+                stage===1 && 
+                <div className="py-12 px-12 bg-white rounded-2xl shadow-xl z-20">
+                    <div>
+                        <h1 className="text-3xl font-bold text-center mb-4 cursor-pointer">Регистрация</h1>
+                        <p className="w-80 text-center text-sm mb-8 font-semibold text-gray-700 tracking-wide cursor-pointer">Создать учетную запись системы Контактор</p>
+                    </div>
+                    <div className="space-y-4">
+                        <input type="text" placeholder="Email " value={email} className="block text-sm py-3 px-4 rounded-lg w-full border outline-none" onChange={e => setEmail(e.target.value)}/>
+                        <input type="password" placeholder="Пароль" value={password} className="block text-sm py-3 px-4 rounded-lg w-full border outline-none" onChange={e => setPassword(e.target.value)}/>
+                        <input type="text" placeholder="ФИО" value={name} className="block text-sm py-3 px-4 rounded-lg w-full border outline-none" onChange={e => setName(e.target.value)}/>
+                        <NumberFormat value={number} className="block px-2 py-2 w-full border outline-non rounded-lg" format="+7 (###) ###-####" allowEmptyFormatting mask="_" onChange={e => setNumber(e.target.value)} />
+                    </div>
+                    <div className="text-center mt-6">
+                        <button className="py-3 w-64 text-xl text-white bg-green-300 rounded-2xl" onClick={registerHandler}>Зарегистрироваться</button>
+                        {/*<p className="mt-4 text-sm">Забыли пароль? <span className="underline cursor-pointer">Восстановить</span></p> */}
+                    </div>
                 </div>
-                <div className="space-y-4">
-                    <input type="text" placeholder="Email " value={email} className="block text-sm py-3 px-4 rounded-lg w-full border outline-none" onChange={e => setEmail(e.target.value)}/>
-                    <input type="password" placeholder="Пароль" value={password} className="block text-sm py-3 px-4 rounded-lg w-full border outline-none" onChange={e => setPassword(e.target.value)}/>
-                    <input type="text" placeholder="ФИО" value={name} className="block text-sm py-3 px-4 rounded-lg w-full border outline-none" onChange={e => setName(e.target.value)}/>
-                    <NumberFormat value={number} className="block px-2 py-2 w-full border outline-non rounded-lg" format="+7 (###) ###-####" allowEmptyFormatting mask="_" onChange={e => setNumber(e.target.value)} />
+            }
+
+            {
+                stage===2 && 
+                <div className="py-12 px-12 bg-white rounded-2xl shadow-xl z-20">
+                    <div>
+                        <h1 className="text-3xl font-bold text-center mb-4 cursor-pointer">Почти всё</h1>
+                        <p className="w-80 text-center text-sm mb-8 font-semibold text-gray-700 tracking-wide cursor-pointer">На вашу почту {email} было отправлено письмо с ссылкой на активацию аккаунта</p>
+                    </div>
+                   
                 </div>
-                <div className="text-center mt-6">
-                    <button className="py-3 w-64 text-xl text-white bg-green-300 rounded-2xl" onClick={registerHandler}>Зарегистрироваться</button>
-                    {/*<p className="mt-4 text-sm">Забыли пароль? <span className="underline cursor-pointer">Восстановить</span></p> */}
-                </div>
-            </div>
+            }
            
         </div>
     )
