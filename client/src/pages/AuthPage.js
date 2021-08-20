@@ -1,13 +1,14 @@
 import React, {useState, useContext} from 'react';
 import {useHttp} from "../utils"
 import {AuthContext} from '../utils/context/Auth.context'
-
+import {useHistory} from "react-router-dom"
 
 const AuthPage = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const {loading, request} = useHttp()
     const auth = useContext(AuthContext)
+    const history = useHistory()
 
     const loginHander = async e => {
         try{
@@ -15,8 +16,11 @@ const AuthPage = () => {
             const data = await request('http://localhost:5000/contactor/authUser/login', 'post', {
                 email, password
             })
-
-            auth.login(data.token.accessToken, data.user.id)
+            if(data.isActivated === true){
+                auth.login(data.token.accessToken, data.user.id)
+                history.push(`/profile/${data.user.id}`)
+            }
+           
         }catch(error){
             console.log(error)
         }
