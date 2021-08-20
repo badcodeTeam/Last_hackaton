@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js",
+    "server": "nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,18 @@
   "bugs": {
     "url": "https://github.com/badcodeTeam/hackaton_badcode/issues"
   },
-  "homepage": "https://github.com/badcodeTeam/hackaton_badcode#readme"
+  "homepage": "https://github.com/badcodeTeam/hackaton_badcode#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.12.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.13.7",
+    "nodemailer": "^6.6.3",
+    "nodemon": "^2.0.12",
+    "path": "^0.12.7",
+    "uuid": "^8.3.2"
+  }
 }
