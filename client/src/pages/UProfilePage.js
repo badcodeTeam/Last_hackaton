@@ -34,7 +34,7 @@ const UProfilePage = () => {
            <div class="py-10 h-screen w-screen ">
             <div class=" mx-auto shadow-xl  bg-gradient-to-t from-teal-100  to-teal-300 bg-green-200 rounded-lg text-bold overflow-hidden w-3/6 h-full">
                 <div class="flex flex-col justify-center  w-full h-full">
-                    <div class="flex flex-col col-auto my-3 items-center"> <img src={`http://localhost:5000/contactor/image/user/${usrId}`} width="150" class="rounded-full" />
+                    <div class="flex flex-col col-auto my-3 items-center"> <img src="https://i.imgur.com/S98fN1K.jpg" width="150" class="rounded-full" />
                         <h1 class="text-xl my-2 text-black font-medium">{!loading && user && user.name}</h1> 
                         <span class="text-sm text-black">Создатель File Sharing Team</span>
                         <span class="text-sm my-2 text-black">{!loading && user && user.number}</span>
