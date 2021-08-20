@@ -1,5 +1,7 @@
 const Img = require('../models/Image')
 const User = require('../models/User')
+const jwt = require('jsonwebtoken');
+
 const path = require('path')
  
 class ImgController {
