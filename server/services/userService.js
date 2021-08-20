@@ -13,6 +13,16 @@ class UserService {
         const clientDto = new ClientDto(user)
         return {clientDto}
     }
+
+    async updateEmailNumber(userId, email, number) {
+        const user = await User.findByIdAndUpdate(userId, {email, number})
+        if(!user){
+            throw ApiError.BadRequestError('Ошибка обновления')
+        }
+        await user.save()
+        const clientDto = new ClientDto(user)
+        return {clientDto}
+    }
 }
 
 module.exports = new UserService();

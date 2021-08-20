@@ -1,5 +1,6 @@
 module.exports = class ClientDto {
     
+    email;
     name;
     companyName;
     position;
@@ -7,6 +8,7 @@ module.exports = class ClientDto {
     number;
 
     constructor(model) {
+        this.email = model.email;
         this.name = model.name;
         this.companyName = model.companyName;
         this.position = model.position;
