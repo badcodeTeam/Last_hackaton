@@ -9,7 +9,7 @@ export const RegisterPage = () => {
 
     const registerHandler = async e => {
         try{
-            
+            e.preventDefault()
             const data = await request('http://localhost:5000/contactor/authUser/register', 'post', {
                 email, password
             })
