@@ -41,7 +41,13 @@ class AuthService {
     }
 
     async activate (activationLink) {
-
+        const user = await User.findOne({activationLink})
+        if(!user) {
+            throw ApiError.BadRequestError('Неккоректная ссылка активации')
+        }
+        await user.updateOne({isActivated: true})
+        await user.updateOne({activationLink: null})
+        await user.save()
     }
 }
 

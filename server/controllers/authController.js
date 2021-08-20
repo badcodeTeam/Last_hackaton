@@ -33,9 +33,14 @@ class AuthController {
         //  http://localhost:5000/contactor/authUser/activate:link
         async activate (req,res,next) {
             try {
-
+                const activationLink = req.params.link
+                const link = await authService.activate(activationLink)
+                if(!link) {
+                    return res.sendFile(path.join(__dirname, '../public', 'activated.html'))
+                }
+                return res.sendFile(path.join(__dirname, '../public', 'activationError.html'))
             } catch (e) {
-                
+                next(e)
             }
         }
 }
