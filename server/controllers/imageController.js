@@ -46,6 +46,9 @@ class ImgController {
         })
         //const saveAvatar = await User.updateOne({_id:decodedToken.id}, {avatar})
         const saveAvatar = await User.findByIdAndUpdate(decodedToken.id, {avatar})
+        const fileSave = new Img({path: avatar})
+
+        await fileSave.save()
         return res.json(saveAvatar)
     }
 }
