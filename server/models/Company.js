@@ -8,7 +8,8 @@ const Company = new Schema({
     members: [{type: Schema.Types.ObjectId, ref: 'User'}],  //Участники
     posts: [{type: Schema.Types.ObjectId, ref: 'Post'}],    //Посты компании
     companyEmail:{type: String},                            //Email компании
-    companyNumber:{type: String}                            //Номер компании
+    companyNumber:{type: String},                           //Номер компании
+    schedule:{type: String}                                 //График работы
 })
 
 module.exports = model('Company', Company)
