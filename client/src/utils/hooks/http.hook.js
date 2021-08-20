@@ -11,13 +11,13 @@ export const useHttp = () => {
                 body = JSON.stringify(body)
                 headers['Content-Type'] = 'application/json'
             }
+            let data;
+            const response = await axios({method, url, data:body, headers}).then(res => {
+                data = res.data;
+            })
+            
 
-            const response = await axios({method, url, body, headers})
-            const data = await response.json()
-
-            if(!response.ok) {
-                throw new Error(data.message || 'Что-то пошло не так')
-            }
+           
 
             setLoading(false)
 
