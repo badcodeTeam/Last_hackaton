@@ -14,7 +14,7 @@ function App() {
     }}>
     <Navbar/>
     <BrowserRouter>
-      <AppRouter />
+      <AppRouter auth={isAuthenticated} />
     </BrowserRouter>
     </AuthContext.Provider>
   );
