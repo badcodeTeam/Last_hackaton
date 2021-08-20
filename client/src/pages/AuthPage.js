@@ -1,13 +1,14 @@
 import React, {useState, useContext} from 'react';
 import {useHttp} from "../utils"
 import {AuthContext} from '../utils/context/Auth.context'
-
+import {useHistory} from "react-router-dom"
 
 const AuthPage = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const {loading, request} = useHttp()
     const auth = useContext(AuthContext)
+    const history = useHistory()
 
     const loginHander = async e => {
         try{
@@ -15,8 +16,11 @@ const AuthPage = () => {
             const data = await request('http://localhost:5000/contactor/authUser/login', 'post', {
                 email, password
             })
-
-            auth.login(data.token.accessToken, data.user.id)
+            if(data.isActivated === true){
+                auth.login(data.token.accessToken, data.user.id)
+                history.push(`/profile/${data.user.id}`)
+            }
+           
         }catch(error){
             console.log(error)
         }
@@ -28,7 +32,7 @@ const AuthPage = () => {
             <div className="py-12 px-12 bg-white rounded-2xl shadow-xl z-20">
                 <div>
                     <h1 className="text-3xl font-bold text-center mb-4 cursor-pointer">Войти</h1>
-                    <p className="w-80 text-center text-sm mb-8 font-semibold text-gray-700 tracking-wide cursor-pointer">Войти в учетную запись системы Конкатор</p>
+                    <p className="w-80 text-center text-sm mb-8 font-semibold text-gray-700 tracking-wide cursor-pointer">Войти в учетную запись системы Контактор</p>
                 </div>
                 <div className="space-y-4">
                     <input type="text" placeholder="Email " className="block text-sm py-3 px-4 rounded-lg w-full border outline-none" onChange={e => setEmail(e.target.value)}/>
