@@ -1,7 +1,7 @@
 const Img = require('../models/Image')
 const User = require('../models/User')
 const jwt = require('jsonwebtoken');
-
+const ApiError = require('../handler/apiError')
 const path = require('path')
  
 class ImgController {
@@ -26,7 +26,7 @@ class ImgController {
 
     async uploadAvatar(req, res, next) {
 
-        const file = req.files.files
+        const file = req.body.files
         
         const token = req.headers.authorization.split(' ')[1] // Bearer asfasnfkajsfnjk
         const decodedToken = jwt.verify(token, process.env.SECRET)
