@@ -15,8 +15,12 @@ const Navbar = () => {
         <NavButton>Главная</NavButton>
         <NavButton>Личный кабинет</NavButton>
         <NavButton>Мероприятия</NavButton>
-        <NavButton>Резиденты</NavButton>
-        <Link to="/contact_us"><NavButton>Контакты</NavButton></Link>
+        <Link to="/residents">
+          <NavButton>Резиденты</NavButton>
+        </Link>
+        <Link to="/contact_us">
+          <NavButton>Контакты</NavButton>
+        </Link>
         <NotificationBar />
       </div>
     </nav>
