@@ -19,6 +19,7 @@ class UserService {
         if(!user){
             throw ApiError.BadRequestError('Ошибка обновления')
         }
+        await user.save()
         const clientDto = new ClientDto(user)
         return {clientDto}
     }
