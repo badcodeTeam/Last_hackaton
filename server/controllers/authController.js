@@ -1,6 +1,7 @@
 const authService = require('../services/authService')
 const {validationResult} = require('express-validator')
 const ApiError = require('../handler/apiError')
+const path = require("path")
 
 class AuthController {
 
