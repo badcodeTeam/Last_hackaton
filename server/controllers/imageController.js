@@ -14,13 +14,12 @@ class ImgController {
         if(!user){
             return next(ApiError.BadRequestError('Пользователь не найден'))
         }
- 
+
         const img = await Img.findOne({path: user.avatar})
  
         if(!img){
             return res.sendFile(path.join(__dirname, '../public/avatars', 'default.jpeg'))
         }
- 
         return res.sendFile(path.join(__dirname, '../public/avatars', user.avatar))
     }
  
@@ -46,6 +45,9 @@ class ImgController {
         })
         //const saveAvatar = await User.updateOne({_id:decodedToken.id}, {avatar})
         const saveAvatar = await User.findByIdAndUpdate(decodedToken.id, {avatar})
+        const fileSave = new Img({path: avatar})
+
+        await fileSave.save()
         return res.json(saveAvatar)
     }
 }
