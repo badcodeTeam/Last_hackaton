@@ -8,7 +8,7 @@ class UserService {
         console.log(userId)
         const user = await User.findById(userId)
         if(!user){
-            throw ApiError.BadRequestError('Пользователь с таким email не был найден')
+            throw ApiError.BadRequestError('Пользователь не был найден')
         }
         const clientDto = new ClientDto(user)
         return {clientDto}
