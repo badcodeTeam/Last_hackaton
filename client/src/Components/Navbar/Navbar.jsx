@@ -11,9 +11,9 @@ const Navbar = () => {
           <p className="text-left text-2xl text-green-400">Контактор</p>
           <p className="text-xs">платформа управления</p>
         </div>
+        <NavButton>Главная</NavButton>
         <NavButton>Личный кабинет</NavButton>
         <NavButton>Мероприятия</NavButton>
-        <NavButton>Новости</NavButton>
         <NotificationBar />
       </div>
     </nav>

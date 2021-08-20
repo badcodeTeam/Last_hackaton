@@ -1,4 +1,5 @@
 import {AuthPage, RegisterPage} from './pages'
+import MainPage from './pages/MainPage.jsx'
 import UProfilePage from './pages/UProfilePage'
 
 export const publicRoutes = [
@@ -9,6 +10,10 @@ export const publicRoutes = [
     {
         path: '/reg',
         Component: RegisterPage
+    },
+    {
+        path: '/main',
+        Component: MainPage
     }
 ]
 
