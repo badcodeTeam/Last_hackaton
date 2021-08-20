@@ -19,7 +19,7 @@ export const publicRoutes = [
 
 export const authRoutes = [
     {
-        path: '/profile',
+        path: '/profile/:id',
         Component: UProfilePage
     }
 ]

@@ -1,17 +1,22 @@
 import React, {useState} from 'react';
 import {useHttp} from "../utils"
+import NumberFormat from 'react-number-format';
 
 export const RegisterPage = () => {
     const [stage, setStage] = useState(1)
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [number, setNumber] = useState('')
+    const [name, setName] = useState('')
     const {loading, request} = useHttp()
 
     const registerHandler = async e => {
         try{
             e.preventDefault()
+            console.log(email, password, number, name)
+            
             const data = await request('http://localhost:5000/contactor/authUser/register', 'post', {
-                email, password
+                email, password, name, number
             })
 
         }catch(error){
@@ -29,8 +34,10 @@ export const RegisterPage = () => {
                     <p className="w-80 text-center text-sm mb-8 font-semibold text-gray-700 tracking-wide cursor-pointer">Создать учетную запись системы Конкатор</p>
                 </div>
                 <div className="space-y-4">
-                    <input type="text" placeholder="Email " className="block text-sm py-3 px-4 rounded-lg w-full border outline-none" onChange={e => setEmail(e.target.value)}/>
-                    <input type="password" placeholder="Пароль" className="block text-sm py-3 px-4 rounded-lg w-full border outline-none" onChange={e => setPassword(e.target.value)}/>
+                    <input type="text" placeholder="Email " value={email} className="block text-sm py-3 px-4 rounded-lg w-full border outline-none" onChange={e => setEmail(e.target.value)}/>
+                    <input type="password" placeholder="Пароль" value={password} className="block text-sm py-3 px-4 rounded-lg w-full border outline-none" onChange={e => setPassword(e.target.value)}/>
+                    <input type="text" placeholder="ФИО" value={name} className="block text-sm py-3 px-4 rounded-lg w-full border outline-none" onChange={e => setName(e.target.value)}/>
+                    <NumberFormat value={number} className="block px-2 py-2 w-full border outline-non rounded-lg" format="+7 (###) ###-####" allowEmptyFormatting mask="_" onChange={e => setNumber(e.target.value)} />
                 </div>
                 <div className="text-center mt-6">
                     <button className="py-3 w-64 text-xl text-white bg-green-300 rounded-2xl" onClick={registerHandler}>Зарегистрироваться</button>
