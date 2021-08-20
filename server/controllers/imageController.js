@@ -49,5 +49,5 @@ class ImgController {
         return res.json(saveAvatar)
     }
 }
- 
+
 module.exports = new ImgController();
