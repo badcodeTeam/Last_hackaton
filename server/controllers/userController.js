@@ -17,7 +17,7 @@ class UserController {
         try{
             const {userId, email, number} = req.body
             const userData = await userService.updateEmailNumber(userId, email, number)
-            return res.json(userData)
+            return res.status(200).json({"message":"Данные обновляются"})
         } catch (e) {
             next(e)
         }
