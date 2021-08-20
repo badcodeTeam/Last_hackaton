@@ -14,7 +14,6 @@ export const RegisterPage = () => {
                 email, password
             })
 
-            console.log(data)
         }catch(error){
             console.log(error)
         }

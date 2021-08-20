@@ -16,8 +16,6 @@ const AuthPage = () => {
                 email, password
             })
 
-            console.log(data)
-
             auth.login(data.token.accessToken, data.user.id)
         }catch(error){
             console.log(error)
