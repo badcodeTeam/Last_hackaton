@@ -9,7 +9,8 @@ const User = new Schema({
     isActivated: {type:Boolean, default: false},            //Статус активации
     activationLink: {type: String},                         //Ссылка на активацию
     avatar: {type: String},                                 //Аватарка
-    companyName: {type:String}                              //Имя компании 
+    companyName: {type:String},                             //Имя компании 
+    number: {type:String}                                   //Номер для связи
 })
 
 module.exports = model('User', User)
