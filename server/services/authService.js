@@ -8,14 +8,14 @@ const mailService = require('./mailService')
 
 class AuthService {
 
-    async registration(email,password) {
+    async registration(email,password, name, number) {
         const candidate = await User.findOne({email})
         if (candidate) {
             throw ApiError.BadRequestError('Пользователь с таким email уже существует')
         }
         const hashedPassword = await bcrypt.hash(password,5)
         const activationLink = uuid.v4()
-        const user = await User.create({email, password: hashedPassword, activationLink})
+        const user = await User.create({email, password: hashedPassword, name,  activationLink, number})
         const userLink = process.env.API_URL + '/contactor/authUser/activate/' + activationLink    
         await mailService.sendActivationMail(email,userLink)
 
