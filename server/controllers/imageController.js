@@ -39,12 +39,13 @@ class ImgController {
         }
         const type = file.name.split('.').pop()
         const avatar = decodedToken.id + '.' + type
-        file.mv(`public/avatars/` + fname, function(err) {
+        file.mv(`public/avatars/` + avatar, function(err) {
             if(err) {
                 return next(ApiError.internal('Ошибка сохранения файла'))
             }
         })
-        const saveAvatar = await User.updateOne({_id:decodedToken.id}, {avatar})
+        //const saveAvatar = await User.updateOne({_id:decodedToken.id}, {avatar})
+        const saveAvatar = await User.findByIdAndUpdate(decodedToken.id, {avatar})
         return res.json(saveAvatar)
     }
 }
