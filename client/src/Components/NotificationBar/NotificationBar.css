@@ -1,18 +1,14 @@
-.hide-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-  
 .notification-bar{
     @apply w-1/12;
     @apply cursor-pointer;
     transition: width 0.6s;
+    background: white;
 }
   
 .notification-bar-enter-done{
     @apply w-3/12;
     flex-direction: column;
     @apply cursor-default;
-    z-index: 1;
 }
   
 .notification-bar-exit-done
@@ -20,5 +16,4 @@
     @apply w-1/12;
     flex-direction: row;
     @apply cursor-pointer;
-    z-index-: 0;
 }
