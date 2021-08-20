@@ -11,9 +11,12 @@ const AuthPage = () => {
 
     const loginHander = async e => {
         try{
-            const data = await request('/contactor/authUser/login', 'post', {
+            
+            const data = await request('http://localhost:5000/contactor/authUser/login', 'post', {
                 email, password
             })
+
+            console.log(data)
 
             auth.login(data.token.accessToken, data.user.id)
         }catch(error){
