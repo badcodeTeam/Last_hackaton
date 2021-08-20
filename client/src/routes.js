@@ -1,6 +1,8 @@
 import {AuthPage, RegisterPage} from './pages'
 import MainPage from './pages/MainPage/MainPage.jsx'
 import UProfilePage from './pages/UProfilePage'
+import ContactPage from './pages/ContactPage.jsx'
+import ResidentsPage from './pages/ResidentsPage.jsx'
 
 export const publicRoutes = [
     {
@@ -14,7 +16,16 @@ export const publicRoutes = [
     {
         path: '/main',
         Component: MainPage
+    },
+    {
+        path: '/contact_us',
+        Component: ContactPage
     }
+    {
+        path: '/residents',
+        Component: ResidentsPage
+    }
+    
 ]
 
 export const authRoutes = [

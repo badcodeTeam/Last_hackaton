@@ -2,6 +2,7 @@ import React from "react";
 import NotificationBar from "../NotificationBar/NotificationBar.jsx";
 import "./Navbar.css";
 import NavButton from "./NavButton.jsx";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -14,6 +15,8 @@ const Navbar = () => {
         <NavButton>Главная</NavButton>
         <NavButton>Личный кабинет</NavButton>
         <NavButton>Мероприятия</NavButton>
+        <NavButton>Резиденты</NavButton>
+        <Link to="/contact_us"><NavButton>Контакты</NavButton></Link>
         <NotificationBar />
       </div>
     </nav>

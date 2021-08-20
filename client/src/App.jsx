@@ -12,8 +12,8 @@ function App() {
     <AuthContext.Provider value={{
       token, login, logout, userId, isAuthenticated
     }}>
-    <Navbar/>
     <BrowserRouter>
+    <Navbar/>
       <AppRouter auth={isAuthenticated} />
     </BrowserRouter>
     </AuthContext.Provider>
