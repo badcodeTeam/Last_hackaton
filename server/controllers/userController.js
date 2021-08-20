@@ -1,14 +1,12 @@
 const userService = require('../services/userService')
 const ApiError = require('../handler/apiError')
-const jwt = require('jsonwebtoken');
 
 class UserController {
     
     async getClientInfo (req, res, next) {
         try {
-            const token = req.headers.authorization.split(' ')[1] // Bearer asfasnfkajsfnjk
-            const decodedToken = jwt.verify(token, process.env.SECRET)
-            const userData = await userService.getUserData(decodedToken.id)
+            const userId = req.params.id;
+            const userData = await userService.getUserData(userId)
             return res.json(userData)
         } catch (e) {
             next(e)

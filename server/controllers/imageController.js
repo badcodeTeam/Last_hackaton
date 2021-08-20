@@ -20,6 +20,10 @@ class ImgController {
  
         return res.sendFile(path.join(__dirname, '../public/avatars', user.avatar))
     }
+
+    async uploadAvatar(req, res, next) {
+        
+    }
 }
  
 module.exports = new ImgController();
