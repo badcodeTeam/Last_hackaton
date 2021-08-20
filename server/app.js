@@ -4,12 +4,15 @@ const cors = require('cors')
 const mongoose = require('mongoose')
 const router = require('./routes/mainRoutes')
 
+
+const errorMiddleware = require('./middlewares/errorMiddleware')
 const PORT = process.env.PORT || 5000
 
 const app = express()
 app.use(cors())
 app.use(express.json())
 app.use('/contactor', router)
+app.use(errorMiddleware)
 
 const start = async () => {
     try {
