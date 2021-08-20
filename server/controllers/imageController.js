@@ -26,7 +26,7 @@ class ImgController {
 
     async uploadAvatar(req, res, next) {
 
-        const file = req.body
+        const file = req.files
         console.log(req.files)
         const token = req.headers.authorization.split(' ')[1] // Bearer asfasnfkajsfnjk
         const decodedToken = jwt.verify(token, process.env.SECRET)
