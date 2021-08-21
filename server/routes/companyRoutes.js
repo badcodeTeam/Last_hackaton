@@ -17,4 +17,7 @@ router.get('/getAllCompanies', companyController.getAllCompanies)
 //  http://localhost:5000/contactor/company/addMember
 router.post('/addMember', companyController.addMember)
 
+//  http://localhost:5000/contactor/company/deleteMember
+router.post('/deleteMember', companyController.deleteMember)
+
 module.exports = router

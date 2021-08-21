@@ -47,8 +47,8 @@ const ResidentList = () => {
             residentFloor={org.floor}
             residentName={org.companyName}
             residentDescription={org.direction}
-            residentTimeStart="8:00"
-            residentTimeEnd="18:00"
+            residentTimeStart={org.scheduleStart}
+            residentTimeEnd={org.scheduleEnd}
             residentSiteUrl={org.site}
             residentId ={org._id}
           />

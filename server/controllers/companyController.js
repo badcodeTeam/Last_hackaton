@@ -55,13 +55,24 @@ class CompanyController {
     //  http://localhost:5000/contactor/company/addMember
     async addMember (req, res, next) {
         try{
-            const {companyId, userId} = req.body
-            const addMember = await CompanyService.addMember(companyId, userId)
+            const {companyId, userId, role} = req.body
+            const addMember = await CompanyService.addMember(companyId, userId, role)
             return res.json(addMember)
         } catch (e) {
             next(e)
         }
     }
+
+        //  http://localhost:5000/contactor/company/deleteMember
+        async deleteMember (req, res, next) {
+            try {
+                const {companyId, userId} = req.body
+                const deleteMember = await CompanyService.deleteMember(companyId, userId)
+                return res.status(200).json({"message":"Данные обновляются"})
+            } catch (e) {
+                next(e)
+            }
+        }
 }
 
 module.exports = new CompanyController();

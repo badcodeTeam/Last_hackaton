@@ -7,6 +7,7 @@ import UEditProfile from './pages/UEditProfile'
 import EventPage from './pages/EventsPage/EventsPage.jsx'
 import AdminPage from './pages/AdminPage/AdminPage'
 import OrgPage from './pages/OrgPage/OrgPage'
+import OrgEdit from './pages/OrgEdit/OrgEdit'
 
 export const publicRoutes = [
     {
@@ -44,6 +45,10 @@ export const authRoutes = [
     {
         path: '/edit/user/:id', 
         Component: UEditProfile
+    },
+    {
+        path: '/edit/org/:id', 
+        Component: OrgEdit
     },
     {
         path: '/admin',
