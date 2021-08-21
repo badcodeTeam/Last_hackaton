@@ -55,49 +55,49 @@ class ImgController {
     }
 
         //  http://localhost:5000/contactor/image/company/:id 
-        async getCompanyImage(req, res, next){
+    async getCompanyImage(req, res, next){
  
-            const companyId = req.params.id;
-            const company = await Company.findById(companyId)
-            if(!user){
-                return next(ApiError.BadRequestError('Компания не найдена'))
-            }
-    
-            const img = await Img.findOne({path: company.img})
-     
-            if(!img){
-                return res.sendFile(path.join(__dirname, '../public/companies', 'default.jpeg'))
-            }
-            return res.sendFile(path.join(__dirname, '../public/companies', company.img))
-        }
-
-        //  http://localhost:5000/contactor/image/uploadCompany
-        async uploadCompany(req, res, next) {
-
-            const file = req.files.files
-            console.log(req.files.files)
-            const {companyId} = req.body
-            const company = await Company.findById(companyId)
-            if(!company){
+        const companyId = req.params.id;
+        const company = await Company.findById(companyId)
+        if(!user){
             return next(ApiError.BadRequestError('Компания не найдена'))
-            }
-            if(!file) {
-            return next(ApiError.BadRequestError('Файлы отсутствуют'))
-            }
-            const type = file.name.split('.').pop()
-            const image = decodedToken.id + '.' + type
-            file.mv(`public/companies/` + image, function(err) {
-            if(err) {
-                return next(ApiError.internal('Ошибка сохранения файла'))
-            }
-            })
-            //const saveAvatar = await User.updateOne({_id:decodedToken.id}, {avatar})
-            const saveImage = await Company.findByIdAndUpdate(companyId, {image})
-            const fileSave = new Img({path: image})
-
-            await fileSave.save()
-            return res.json(saveImage)
         }
+
+        const img = await Img.findOne({path: company.img})
+    
+        if(!img){
+            return res.sendFile(path.join(__dirname, '../public/companies', 'default.jpeg'))
+        }
+        return res.sendFile(path.join(__dirname, '../public/companies', company.img))
+    }
+
+    //  http://localhost:5000/contactor/image/uploadCompany
+    async uploadCompany(req, res, next) {
+
+        const file = req.files.files
+        console.log(req.files.files)
+        const {companyId} = req.body
+        const company = await Company.findById(companyId)
+        if(!company){
+        return next(ApiError.BadRequestError('Компания не найдена'))
+        }
+        if(!file) {
+        return next(ApiError.BadRequestError('Файлы отсутствуют'))
+        }
+        const type = file.name.split('.').pop()
+        const image = decodedToken.id + '.' + type
+        file.mv(`public/companies/` + image, function(err) {
+        if(err) {
+            return next(ApiError.internal('Ошибка сохранения файла'))
+        }
+        })
+        //const saveAvatar = await User.updateOne({_id:decodedToken.id}, {avatar})
+        const saveImage = await Company.findByIdAndUpdate(companyId, {image})
+        const fileSave = new Img({path: image})
+
+        await fileSave.save()
+        return res.json(saveImage)
+    }
 }
 
 module.exports = new ImgController();
