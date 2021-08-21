@@ -2,6 +2,7 @@ import React, {useState, useEffect, useCallback, useContext} from 'react';
 import {useParams} from "react-router-dom"
 import {useHttp} from "../utils"
 import {AuthContext} from "../utils/context/Auth.context"
+import { Link } from "react-router-dom";
 
 const UProfilePage = () => {
     const [postText, setPostText] = useState('')
@@ -40,7 +41,8 @@ const UProfilePage = () => {
                         <span class="text-sm my-2 text-black">{!loading && user && user.number}</span>
                     </div>
                     <div class="flex flex-col col-auto my-3 items-center">
-                        <button> Связаться </button>
+                        {!loading && user && userId!==usrId && <button> Связаться </button>}
+                        {!loading && user && userId===usrId && <Link to={`/edit/user/${userId}`}><button> Редактировать </button></Link>}
                     </div>
                     <div class="flex flex-col col-auto my-3 items-center h-4/6 bg-green-100 overflow-y-scroll ">
                         <div className="my-5 w-5/6 rounded-full">

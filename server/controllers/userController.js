@@ -3,6 +3,7 @@ const ApiError = require('../handler/apiError')
 
 class UserController {
     
+    //  http://localhost:5000/contactor/user/getClientInfo/:id
     async getClientInfo (req, res, next) {
         try {
             const userId = req.params.id;
@@ -13,6 +14,7 @@ class UserController {
         }
     }
 
+    //  http://localhost:5000/contactor/user/updateEmailNumber
     async updateEmailNumber (req, res, next) {
         try{
             const {userId, email, number} = req.body

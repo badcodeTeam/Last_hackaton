@@ -6,6 +6,7 @@ const path = require('path')
  
 class ImgController {
  
+    //  http://localhost:5000/contactor/image/user/:id 
     async getUserImage(req, res, next){
  
         const userId = req.params.id;
@@ -23,6 +24,7 @@ class ImgController {
         return res.sendFile(path.join(__dirname, '../public/avatars', user.avatar))
     }
  
+    //  http://localhost:5000/contactor/image/uploadAvatar
     async uploadAvatar(req, res, next) {
  
         const file = req.files.files
