@@ -28,7 +28,7 @@ const customStyles = {
 Modal.setAppElement("#root");
 
 const Navbar = () => {
-  const { userId } = useContext(AuthContext);
+  const { userId, logout } = useContext(AuthContext);
   const [modalActive, setModalActive] = useState(false);
 
   const openModal = () => {
@@ -96,7 +96,7 @@ const Navbar = () => {
           <NavButton>Контакты</NavButton>
         </Link>
         <NotificationBar />
-        <NavButton customStyles="text-white btn-remove-border">...</NavButton>
+        <NavButton onClick={logout} customStyles="text-white btn-remove-border">...</NavButton>
       </div>
     </nav>
   );
