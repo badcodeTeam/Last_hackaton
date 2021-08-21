@@ -85,7 +85,7 @@ class ImgController {
         return next(ApiError.BadRequestError('Файлы отсутствуют'))
         }
         const type = file.name.split('.').pop()
-        const image = decodedToken.id + '.' + type
+        const image = companyId + '.' + type
         file.mv(`public/companies/` + image, function(err) {
         if(err) {
             return next(ApiError.internal('Ошибка сохранения файла'))
