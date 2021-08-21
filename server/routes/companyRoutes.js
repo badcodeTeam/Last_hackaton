@@ -14,4 +14,7 @@ router.post('/updateCompany', companyController.updateCompany)
 //  http://localhost:5000/contactor/company/getAllCompanies
 router.get('/getAllCompanies', companyController.getAllCompanies)
 
+//  http://localhost:5000/contactor/company/addMember
+router.post('/addMember', companyController.addMember)
+
 module.exports = router

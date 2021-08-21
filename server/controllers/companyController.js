@@ -51,6 +51,17 @@ class CompanyController {
             next(e)
         }
     }
+
+    //  http://localhost:5000/contactor/company/addMember
+    async addMember (req, res, next) {
+        try{
+            const {companyId, userId} = req.body
+            const addMember = await CompanyService.addMember(companyId, userId)
+            return res.json(addMember)
+        } catch (e) {
+            next(e)
+        }
+    }
 }
 
 module.exports = new CompanyController();
