@@ -6,6 +6,7 @@ import ResidentsPage from './pages/ResidentPage/ResidentsPage.jsx'
 import UEditProfile from './pages/UEditProfile'
 import EventPage from './pages/EventsPage/EventsPage.jsx'
 import AdminPage from './pages/AdminPage/AdminPage'
+import OrgPage from './pages/OrgPage/OrgPage'
 
 export const publicRoutes = [
     {
@@ -47,6 +48,10 @@ export const authRoutes = [
     {
         path: '/admin',
         Component: AdminPage
+    },
+    {
+        path: '/org/:id',
+        Component: OrgPage
     }
 ]
 

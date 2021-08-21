@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from 'react-router-dom'
 
 const ResidentCard = ({
   residentPreviewImage,
@@ -9,7 +10,9 @@ const ResidentCard = ({
   residentBuilding,
   residentFloor,
   residentSiteUrl,
+  residentId
 }) => {
+  const route = '/org/' + residentId
   return (
     <li
       className="text-white w-1/2 h-full p-5 border-8 border-white grid grid-cols-2 grid-rows-3 background-dim"
@@ -23,8 +26,10 @@ const ResidentCard = ({
           backdropFilter: `blur(30px)`,
         }}
       >
-        <p className="text-3xl font-bold">{residentName}</p>
-        <p className="text-2xl text-green-400 font-light">{residentDescription}</p>
+        <Link to={route}>
+          <p className="text-3xl font-bold">{residentName}</p>
+          <p className="text-2xl text-green-400 font-light">{residentDescription}</p>
+        </Link>
       </div>
       <div
         className="flex flex-col justify-evenly items-center z-10 font-black"
