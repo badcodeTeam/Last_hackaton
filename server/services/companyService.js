@@ -71,6 +71,7 @@ class CompanyService {
     async deleteMember(companyId, userId) {
         try {
             const deleteMember = await Company.findByIdAndDelete(companyId, {members:userId})
+            const updateRole = await User.findByIdAndUpdate(userId,{role:1})
             if (!deleteMember) {
                 return next(ApiError.badRequest('Ошибка удаления чата'))
             }
