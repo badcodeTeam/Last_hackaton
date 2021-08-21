@@ -3,7 +3,6 @@ const ApiError = require('../handler/apiError')
 const jwt = require('jsonwebtoken');
 const path = require("path")
 
-
 class EventController {
     
         //  http://localhost:5000/contactor/event/addEvent
@@ -11,8 +10,8 @@ class EventController {
             try {
                 const token = req.headers.authorization.split(' ')[1] // Bearer asfasnfkajsfnjk
                 const decodedToken = jwt.verify(token, process.env.SECRET)
-                const {eventName} = req.body;
-                const createEvent = await EventService.createEvent(decodedToken.id, eventName)
+                const {eventName, dateStart, dateEnd, description} = req.body;
+                const createEvent = await EventService.createEvent(decodedToken.id, eventName, dateStart, dateEnd, description)
                 return res.json(createEvent)
             } catch (e) {
                 next(e)

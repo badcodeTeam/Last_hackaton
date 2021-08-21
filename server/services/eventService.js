@@ -5,13 +5,13 @@ const uuid = require('uuid')
 
 class EventService {
 
-    async createEvent(userId, eventName) {
+    async createEvent(userId, eventName, dateStart, dateEnd, description) {
         const user = await User.findById(userId)
         if(!user){
             throw ApiError.BadRequestError('Пользователь не был найден')
         }
         const eventLink = uuid.v4()
-        const createEvent = await Event.create({eventName, eventLink, eventCreator:userId})
+        const createEvent = await Event.create({eventName, eventLink, eventCreator:userId, dateStart, dateEnd, description})
         const activationLink = process.env.API_URL + '/contactor/event/activate/' + eventLink  
         return {createEvent,eventLink,activationLink}
     }
