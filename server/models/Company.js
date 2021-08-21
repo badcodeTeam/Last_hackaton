@@ -9,12 +9,12 @@ const Company = new Schema({
     posts: [{type: Schema.Types.ObjectId, ref: 'Post'}],    //Посты компании
     companyEmail:{type: String},                            //Email компании
     companyNumber:{type: String},                           //Номер компании
-    scheduleStart:{type: String},
-    scheduleEnd: {type: String},
-    description: {type: String},
-    building: {type: Number},
-    floor: {type: Number},
-    site: {type: String, default: "http://localhost:3000"}                                 
+    scheduleStart:{type: String},                           //Начало рабочего дня
+    scheduleEnd: {type: String},                            //Окончания рабочего дня
+    description: {type: String},                            //Описание
+    building: {type: Number},                               //Здание
+    floor: {type: Number},                                  //Этаж
+    site: {type: String, default: "http://localhost:3000"}  //Сайт                              
 })
 
 module.exports = model('Company', Company)
