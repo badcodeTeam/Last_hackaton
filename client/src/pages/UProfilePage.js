@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 
 const UProfilePage = () => {
     const [postText, setPostText] = useState('')
+    const [postHeader, setPostHeader] = useState('')
     const [user, setUser] = useState(null)
     const usrId = useParams().id;
     const {request, loading} = useHttp()
@@ -28,6 +29,20 @@ const UProfilePage = () => {
     useEffect(() => {
         getUser()
     }, [getUser])
+
+    const sendPost = async e => {
+        try{
+            e.preventDefault()
+            console.log(postText)
+            const send = await request('http://localhost:5000/contactor/post/addPost', 'post', {postHeader: postHeader, text: postText}, {
+                Authorization: `Bearer ${token}`
+            })
+
+            console.log(send)
+        }catch(err){
+            console.log(err)
+        }
+    }
     
     /*
         ИНН ОГРНИП ПАСПОРТ , ООО ДОКИ 
@@ -49,8 +64,18 @@ const UProfilePage = () => {
                         {!loading && user && userId===usrId && <Link to={`/edit/user/${usrId}`}><button> Редактировать </button></Link>}
                     </div>
                     <div className="flex flex-col col-auto my-3 items-center h-4/6 bg-green-100 overflow-y-scroll ">
-                        <div className="my-5 w-5/6 rounded-full">
-                            {!loading && user && userId===usrId && <input name="field_name" className=" border border-2 rounded-r px-4 py-2 w-full " type="text" placeholder="Новая запись" />}
+                        <div className="my-5 w-full rounded-full flex flex-col  justify-center items-center">
+                            {!loading && user && userId===usrId && 
+                            <>
+                                <div className="w-5/6">
+                                    <input name="field_name" className=" border border-2 rounded-r px-4 py-2 w-full  " type="text" placeholder="Заголовок" onChange={e => setPostHeader(e.target.value)} />
+                                    
+                                </div>
+                                <div className="w-5/6 flex flex-row my-2">
+                                    <input name="field_name" className=" border border-2 rounded-r px-4 py-2 w-full  " type="text" placeholder="Текст" onChange={e => setPostText(e.target.value)} />
+                                    <button className="mx-1 bg-white hover:bg-green-400 px-2 py-1" onClick={sendPost}>Отправить</button>
+                                </div>
+                            </>}
                         </div>
                         <div className="flex flex-row my-5 h-2/6 w-5/6 bg-white rounded-lg shadow-md">
                             <img src={`http://localhost:5000/contactor/image/user/${usrId}`}   className="my-auto mx-5 rounded-full h-3/6" />

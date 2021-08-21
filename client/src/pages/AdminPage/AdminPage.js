@@ -1,12 +1,14 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import Select from '../../Components/UI/Select';
 import NumberFormat from 'react-number-format';
 import {useHttp} from "../../utils"
 import {AuthContext} from "../../utils/context/Auth.context"
+import {useHistory} from "react-router-dom"
 
 const AdminPage = () => {
     const {request} = useHttp()
-    const {token} = useContext(AuthContext)
+    const {token, role} = useContext(AuthContext)
+    const history = useHistory()
     const [type, setType] = useState(1)
     const [form, setForm] = useState({
             companyName: '',
@@ -34,6 +36,12 @@ const AdminPage = () => {
     const changeHandler = event => {
         setForm({ ...form , [event.target.name]: event.target.value})
     }
+
+    useEffect(() => {
+        if(role !== 4){
+            history.push('/')
+        }
+    }, [history, role])
 
 
     return (
