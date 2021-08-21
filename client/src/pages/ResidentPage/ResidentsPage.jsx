@@ -6,7 +6,7 @@ import ResidentList from "./ResidentList.jsx";
 const ResidentsPage = () => {
   return (
     <div className="w-full flex-grow p-10 flex flex-col overflow-hidden">
-      <form className="grid grid-rows-2 grid-cols-2 gap-3 mb-5">
+      <form className="w-11/12 grid grid-rows-2 grid-cols-2 gap-3 mb-5 self-center">
         <Input
           type="text"
           placeholder="Название"

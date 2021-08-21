@@ -3,7 +3,7 @@ import React from "react";
 const ResidentCard = ({
   residentPreviewImage,
   residentName,
-  residentType,
+  residentDescription,
   residentTimeStart,
   residentTimeEnd,
   residentBuilding,
@@ -24,7 +24,7 @@ const ResidentCard = ({
         }}
       >
         <p className="text-3xl font-bold">{residentName}</p>
-        <p className="text-2xl text-green-400 font-light">{residentType}</p>
+        <p className="text-2xl text-green-400 font-light">{residentDescription}</p>
       </div>
       <div
         className="flex flex-col justify-evenly items-center z-10 font-black"
