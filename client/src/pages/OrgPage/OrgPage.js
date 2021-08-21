@@ -21,6 +21,7 @@ const OrgPage = () => {
             })
             console.log(created)
             setOrg(created.company)
+            
         }catch(e){
             console.log(e)
         }
@@ -29,6 +30,9 @@ const OrgPage = () => {
     useEffect(() => {
         getUser()
     }, [getUser])
+
+    //6120a5a7f8f9406ce804733b 6120a5a7f8f9406ce804733b
+
     return (
         <div className="container">
            <div class="py-10 h-screen w-screen ">
@@ -41,8 +45,8 @@ const OrgPage = () => {
                         
                     </div>
                     <div class="flex flex-col col-auto my-3 items-center">
-                        {!loading && org && userId===org.owner && <button> Связаться </button>}
-                        
+                        {!loading && org && userId!==org.owner && <button> Связаться </button>}
+                        {!loading && org && userId===org.owner && <Link to={`/edit/org/${orgId}`}><button> Редактировать </button></Link>}
                     </div>
                     <div class="flex flex-col col-auto my-3 items-center h-4/6 bg-green-100 overflow-y-scroll ">
                         <div className="my-5 w-5/6 rounded-full">
