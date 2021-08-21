@@ -26,7 +26,7 @@ const OrgPage = ({id}) => {
                 })
                 console.log(created)
                 setOrg(created.companyData)
-                setPosts(created.companyPosts.CompanyPosts)
+                setPosts(created.companyPosts.CompanyPosts.reverse())
             }
         }catch(e){
             console.log(e)
@@ -65,10 +65,10 @@ const OrgPage = ({id}) => {
                         <span class="text-sm text-black">{!loading && org && <a href={org.site}>Сайт</a>}</span>
                         
                     </div>
-                    <div class="flex flex-col col-auto my-3 items-center">
+                    <div class="flex flex-row col-auto my-3 w-full items-center justify-center">
                         {!loading && org && userId!==org.owner && <button> Связаться </button>}
                         {!loading && org && userId===org.owner && <Link to={`/edit/org/${orgId}`}><button> Редактировать </button></Link>}
-                        
+                        {!loading && org && userId===org.owner && <button className="mx-2"> Добавить сотрудника </button>}
                     </div>
                     <div class="flex flex-col col-auto my-3 items-center h-4/6 bg-green-100 overflow-y-scroll ">
                         <div className="my-5 w-full rounded-full flex flex-col  justify-center items-center">

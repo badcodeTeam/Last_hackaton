@@ -23,7 +23,7 @@ const UProfilePage = () => {
             })
             console.log(created)
             setUser(created.userData.clientDto)
-            setPosts(created.userPosts.userPosts)
+            setPosts(created.userPosts.userPosts.reverse())
         }catch(e){
             console.log(e)
         }
