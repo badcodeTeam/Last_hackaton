@@ -15,7 +15,7 @@ export const EventCard = ({
   const route = '/org/' + residentId
   return (
     <li
-      className="text-white w-1/2 h-full p-5 border-8 border-white flex items-center justify-center background-dim"
+      className="text-white w-1/3 h-3/6 p-5 border-8 border-white flex items-center justify-center background-dim"
       style={{ background: `url('${residentPreviewImage}')` }}
     >
       <div
