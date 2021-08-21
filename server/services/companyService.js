@@ -14,7 +14,6 @@ class CompanyService {
         } catch (e) {
             return e
         }
-
     }
 
     async addCompany(ownerId, companyName, entrepreneur, direction, building, floor) {
