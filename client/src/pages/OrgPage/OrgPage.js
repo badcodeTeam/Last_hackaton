@@ -11,6 +11,7 @@ const OrgPage = () => {
     const orgId = useParams().id;
     const {request, loading} = useHttp()
     const {token, userId} = useContext(AuthContext)
+    const [stage, setStage] = useState(1)
 
     const getUser = useCallback(async () => {
         try{
@@ -47,6 +48,7 @@ const OrgPage = () => {
                     <div class="flex flex-col col-auto my-3 items-center">
                         {!loading && org && userId!==org.owner && <button> Связаться </button>}
                         {!loading && org && userId===org.owner && <Link to={`/edit/org/${orgId}`}><button> Редактировать </button></Link>}
+                        
                     </div>
                     <div class="flex flex-col col-auto my-3 items-center h-4/6 bg-green-100 overflow-y-scroll ">
                         <div className="my-5 w-5/6 rounded-full">
