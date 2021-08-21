@@ -1,10 +1,11 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import NotificationList from "./NotificationList.jsx";
 import { CSSTransition } from "react-transition-group";
 import './NotificationBar.css'
 
 const NotificationBar = () => {
   const [isActive, setActive] = useState(false);
+
   const [notificationList, setNotificationList] = useState([
     { topic: "First notification", text: "First notification text" },
     { topic: "Second notification", text: "Second notification text" },

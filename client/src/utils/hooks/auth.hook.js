@@ -1,4 +1,5 @@
 import {useCallback, useState, useEffect} from 'react'
+import io from 'socket.io-client'
 
 const storageName = 'userData'
 
@@ -11,6 +12,7 @@ export const useAuth = () => {
     const login = useCallback((jwtToken, id) => {
         setToken(jwtToken)
         setUserId(id)
+
         localStorage.setItem(storageName, JSON.stringify({
             userId: id, token: jwtToken
         }))

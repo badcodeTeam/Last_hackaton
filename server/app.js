@@ -15,6 +15,20 @@ app.use(fileUpload({}))
 app.use('/contactor', router)
 app.use(errorMiddleware)
 
+
+const server = require('http').Server(app);
+const {Server} = require('socket.io');
+const io = new Server(server, {cors: {
+    origin: '*',
+    methods: ["GET", "POST"]
+}});
+
+io.on('connection', socket => {
+    console.log("User connected");
+
+    io.emit('message', {"hello": "hello"})
+})
+
 const start = async () => {
     try {
         await mongoose.connect(process.env.DB_URL, {
@@ -22,7 +36,7 @@ const start = async () => {
             useUnifiedTopology: true,
             useFindAndModify: false
         })
-        app.listen(PORT, ()=>console.log('App has been started on port:', PORT))
+        server.listen(PORT, ()=>console.log('App has been started on port:', PORT))
     } catch (e) {
         console.log(e)
     }
