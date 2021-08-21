@@ -118,7 +118,7 @@ const AdminPage = () => {
                                 <div className="w-5/6 flex flex-col my-2 relative">
                                     <h1 class="text-xl my-1 text-black font-large">Создание организации</h1> 
                                     <input name="companyName" class=" border border-2 rounded-r px-4 py-2 my-3 w-full " type="text" placeholder="Название организации" onChange={changeHandler} />
-                                    <input name="entrepreneur" class=" border border-2 rounded-r px-4 py-2 my-3 w-full " type="text" placeholder="Владелец (ИП)" onChange={changeHandler} />
+                                    <input name="entrepreneur" class=" border border-2 rounded-r px-4 py-2 my-3 w-full " type="text" placeholder="Владелец (ИНН)" onChange={changeHandler} />
                                     <input name="ownerId" class=" border border-2 rounded-r px-4 py-2 my-3 w-full " type="text" placeholder="Владелец (ID)" onChange={changeHandler} />
                                     
                                     <Select name="direction" onChange={changeHandler}>
