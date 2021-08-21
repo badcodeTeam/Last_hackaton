@@ -42,7 +42,7 @@ const UProfilePage = () => {
                     </div>
                     <div class="flex flex-col col-auto my-3 items-center">
                         {!loading && user && userId!==usrId && <button> Связаться </button>}
-                        {!loading && user && userId===usrId && <Link to={`/edit/user/$`}><button> Редактировать </button></Link>}
+                        {!loading && user && userId===usrId && <Link to={`/edit/user/${usrId}`}><button> Редактировать </button></Link>}
                     </div>
                     <div class="flex flex-col col-auto my-3 items-center h-4/6 bg-green-100 overflow-y-scroll ">
                         <div className="my-5 w-5/6 rounded-full">
