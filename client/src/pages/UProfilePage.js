@@ -29,6 +29,10 @@ const UProfilePage = () => {
         getUser()
     }, [getUser])
     
+    /*
+        ИНН ОГРНИП ПАСПОРТ , ООО ДОКИ 
+        ВИЗУАЛИЗАЦИЯ ОБЪЕКТА УПРАВЛЕНИЯ
+    */
 
     return (
         <div className="container">
