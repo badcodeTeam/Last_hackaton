@@ -96,6 +96,7 @@ const Navbar = () => {
           <NavButton>Контакты</NavButton>
         </Link>
         <NotificationBar />
+        <NavButton customStyles="text-white btn-remove-border">...</NavButton>
       </div>
     </nav>
   );
