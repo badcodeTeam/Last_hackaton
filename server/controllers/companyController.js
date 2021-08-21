@@ -30,8 +30,8 @@ class CompanyController {
     //  http://localhost:5000/contactor/company/updateCompany
     async updateCompany(req, res, next) {
         try{
-            const {companyId, companyName,companyEmail,companyNumber,schedule} = req.body
-            const companyUpdate = await CompanyService.updateCompany(companyId, companyName,companyEmail,companyNumber,schedule)
+            const {companyId, companyName,companyEmail,companyNumber,scheduleStart,scheduleEnd,description,building,floor,site} = req.body
+            const companyUpdate = await CompanyService.updateCompany(companyId, companyName,companyEmail,companyNumber,scheduleStart,scheduleEnd,description,building,floor,site)
             return res.json(companyUpdate)
         } catch(e){
             next(e)
