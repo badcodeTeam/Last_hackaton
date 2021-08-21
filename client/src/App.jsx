@@ -1,30 +1,25 @@
-import {React, useEffect, useState} from 'react';
+import {React} from 'react';
 import {BrowserRouter} from 'react-router-dom'
 import { AppRouter } from './Components/AppRouter/AppRouter';
 import Navbar from './Components/Navbar/Navbar';
 import {useAuth} from "./utils/hooks/auth.hook"
 import {AuthContext} from "./utils/context/Auth.context"
-import io from 'socket.io-client'
+import {SocketContext, socket} from './utils/context/socket';
+
 
 function App() {
-
-  const[socket, setSocket] = useState(null);
-
-  useEffect(() => {
-    setSocket(io("http://localhost:5000/"));
-  },[])
-
-
   const {login, logout, token, userId, ready} = useAuth()
   const isAuthenticated = !!token
   return (
     <AuthContext.Provider value={{
-      token, login, logout, userId, isAuthenticated, socket
+      token, login, logout, userId, isAuthenticated,
     }}>
+    <SocketContext.Provider value={socket}>
     <BrowserRouter>
-    <Navbar socket={socket}/>
+    <Navbar/>
       <AppRouter auth={isAuthenticated} />
     </BrowserRouter>
+    </SocketContext.Provider>
     </AuthContext.Provider>
   );
 }

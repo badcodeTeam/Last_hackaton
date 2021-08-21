@@ -1,14 +1,12 @@
-import { React, useState, useEffect} from "react";
+import { React, useState, useEffect, useContext} from "react";
 import NotificationList from "./NotificationList.jsx";
 import { CSSTransition } from "react-transition-group";
 import './NotificationBar.css';
 
-const NotificationBar = ({socket}) => {
+const NotificationBar = () => {
 
   const [isActive, setActive] = useState(false);
 
-
-  
   const [notificationList, setNotificationList] = useState([
     { topic: "First notification", text: "First notification text" },
     { topic: "Second notification", text: "Second notification text" },
@@ -16,7 +14,6 @@ const NotificationBar = ({socket}) => {
     { topic: "Fourth notification", text: "Fourth notification text" }
   ]);
 
-  
   return (
     <CSSTransition in={isActive} timeout={0} classNames="notification-bar">
       <div
@@ -27,7 +24,7 @@ const NotificationBar = ({socket}) => {
       >
         {!isActive ? (
           <>
-            {notificationList.lenght == 0 ? (
+            {notificationList.lenght === 0 ? (
               <img src="https://img.icons8.com/material-two-tone/24/000000/bell--v1.png" />
             ) : (
               <img src="https://img.icons8.com/material/24/000000/bell--v1.png" />
