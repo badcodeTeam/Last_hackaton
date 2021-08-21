@@ -24,6 +24,7 @@ class CompanyService {
                 throw ApiError.BadRequestError('Пользователь не был найден')
             }
             const createCompany = await Company.create({companyName, owner:ownerId, entrepreneur, direction, building, floor})
+            const addRole = await User.findByIdAndUpdate(ownerId,{role:3})
             return {createCompany}
         } catch (e) {
             return e
@@ -54,13 +55,14 @@ class CompanyService {
         }
     }
 
-    async addMember(companyId, userId) {
+    async addMember(companyId, userId, role) {
         try {
             const user = await User.findById(userId)
             if(!user){
                 throw ApiError.BadRequestError('Пользователь не был найден')
             }
             const addMember = await Company.findByIdAndUpdate(companyId, {$push: { members:userId }}) 
+            const addRole = await User.findByIdAndUpdate(userId,{role})
             return {addMember}
         } catch (e) {
             return e
