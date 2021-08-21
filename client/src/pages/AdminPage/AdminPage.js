@@ -1,9 +1,39 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import Select from '../../Components/UI/Select';
+import NumberFormat from 'react-number-format';
+import {useHttp} from "../../utils"
+import {AuthContext} from "../../utils/context/Auth.context"
 
 const AdminPage = () => {
+    const {request} = useHttp()
+    const {token} = useContext(AuthContext)
     const [type, setType] = useState(1)
-    
+    const [form, setForm] = useState({
+            companyName: '',
+            entrepreneur: '',
+            direction: '',
+            building: '',
+            floor: '',
+            ownerId: ''
+        })
+
+    const orgCreate = async e => {
+        try{
+            e.preventDefault();
+            const data = await request('http://localhost:5000/contactor/company/addCompany', 'post', {...form}, {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                Authorization: `Bearer ${token}`
+            })
+            console.log(data)
+        }catch(err){
+            console.log(err)
+        }
+    }
+
+    const changeHandler = event => {
+        setForm({ ...form , [event.target.name]: event.target.value})
+    }
 
 
     return (
@@ -79,21 +109,21 @@ const AdminPage = () => {
                             <>
                                 <div className="w-5/6 flex flex-col my-2 relative">
                                     <h1 class="text-xl my-1 text-black font-large">Создание организации</h1> 
-                                    <input name="field_name" class=" border border-2 rounded-r px-4 py-2 my-3 w-full " type="text" placeholder="Название организации"  />
-                                    <input name="field_name" class=" border border-2 rounded-r px-4 py-2 my-3 w-full " type="text" placeholder="Владелец (ИП)"  />
-                                    <input name="field_name" class=" border border-2 rounded-r px-4 py-2 my-3 w-full " type="text" placeholder="Владелец (ID)"  />
-                                    <input name="field_name" class=" border border-2 rounded-r px-4 py-2 my-3 w-full " type="text" placeholder="Телефон"  />
-                                    <Select>
+                                    <input name="companyName" class=" border border-2 rounded-r px-4 py-2 my-3 w-full " type="text" placeholder="Название организации" onChange={changeHandler} />
+                                    <input name="entrepreneur" class=" border border-2 rounded-r px-4 py-2 my-3 w-full " type="text" placeholder="Владелец (ИП)" onChange={changeHandler} />
+                                    <input name="ownerId" class=" border border-2 rounded-r px-4 py-2 my-3 w-full " type="text" placeholder="Владелец (ID)" onChange={changeHandler} />
+                                    
+                                    <Select name="direction" onChange={changeHandler}>
                                         <option>Искусство</option>
                                         <option>IT</option>
                                         <option>Магазин</option>
                                         <option>Услуги</option>
                                         <option>Офис</option>
                                     </Select>
-                                    <input name="field_name" class=" border border-2 rounded-r px-4 py-2 my-3 w-full " type="text" placeholder="Офис (Строение)"  />
-                                    <input name="field_name" class=" border border-2 rounded-r px-4 py-2 my-3 w-full " type="text" placeholder="Офис (Этаж)"  />
+                                    <input name="building" class=" border border-2 rounded-r px-4 py-2 my-3 w-full " type="text" placeholder="Офис (Строение)" onChange={changeHandler}  />
+                                    <input name="floor" class=" border border-2 rounded-r px-4 py-2 my-3 w-full " type="text" placeholder="Офис (Этаж)" onChange={changeHandler} />
                                     <div className=" w-full  ">
-                                        <button className="absolute top-50 left-50 border-2 border-green-400 px-1 py-1 hover:border-green-400 hover:bg-green-400 hover:text-white">Создать</button>
+                                        <button className="absolute top-50 left-50 border-2 border-green-400 px-1 py-1 hover:border-green-400 hover:bg-green-400 hover:text-white" onClick={orgCreate}>Создать</button>
                                     </div>
                                 </div>
                             </>
