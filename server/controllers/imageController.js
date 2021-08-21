@@ -54,7 +54,7 @@ class ImgController {
         return res.json(saveAvatar)
     }
 
-        //  http://localhost:5000/contactor/image/company/:id 
+    //  http://localhost:5000/contactor/image/company/:id 
     async getCompanyImage(req, res, next){
  
         const companyId = req.params.id;

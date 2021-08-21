@@ -67,6 +67,18 @@ class CompanyService {
             return e
         }
     }
+
+    async deleteMember(companyId, userId) {
+        try {
+            const deleteMember = await Company.findByIdAndDelete(companyId, {members:userId})
+            if (!deleteMember) {
+                return next(ApiError.badRequest('Ошибка удаления чата'))
+            }
+            return {deleteMember}
+        } catch (e) {
+            return e
+        }
+    }
 }
 
 module.exports = new CompanyService();
