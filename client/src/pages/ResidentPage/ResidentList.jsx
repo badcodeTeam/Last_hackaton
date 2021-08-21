@@ -22,6 +22,8 @@ const ResidentList = () => {
     getOrgs()
   }, [getOrgs])
 
+
+
   return (
     <ul className="w-full h-full flex-grow hide-scrollbar flex flex-wrap overflow-auto">
       { /*
@@ -47,6 +49,7 @@ const ResidentList = () => {
             residentTimeStart="8:00"
             residentTimeEnd="18:00"
             residentSiteUrl={org.site}
+            residentId ={org._id}
           />
         )
       })}
