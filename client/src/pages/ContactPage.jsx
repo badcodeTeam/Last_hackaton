@@ -1,6 +1,8 @@
 import React from "react";
 import MyButton from "../Components/UI/MyButton.jsx";
 import Input from "../Components/UI/Input.jsx";
+import TextArea from "../Components/UI/TextArea.jsx";
+import Form from '../Components/UI/Form.jsx';
 
 const ContactPage = () => {
   return (
@@ -27,14 +29,14 @@ const ContactPage = () => {
         <p>+ 7 (999) 999-99-99</p>
         <p>johndoe@mail.com</p>
       </div>
-      <form className="col-start-5 col-end-7 row-start-1 row-end-4 rounded bg-green-200 p-10 flex flex-col justify-evenly items-center">
+      <Form customClasses="col-start-5 col-end-7 row-start-1 row-end-4">
         <Input type="text" placeholder="Имя" />
-        <Input type="text" placeholder="Телефон" />
+        <Input type="tel" placeholder="Телефон" />
         <Input type="email" placeholder="E-mail" />
         <Input type="text" placeholder="Организация" />
-        <textarea className="block text-sm py-3 px-4 rounded-lg w-full border outline-none resize-none" placeholder="Комментарий"/>
+        <TextArea placeholder="Комментарий" resizeable={false}/>
         <MyButton additionalClasses="text-xl text-green-700 bg-white rounded-2xl">Связаться</MyButton>
-      </form>
+      </Form>
     </div>
   );
 };
