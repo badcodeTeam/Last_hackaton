@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 const UEditProfile = () => {
 
-    const orgId = useParams().id;
+    
     const {request, loading} = useHttp()
     const {token, userId} = useContext(AuthContext)
     const [files, setFiles] = useState([])
@@ -23,11 +23,13 @@ const UEditProfile = () => {
     const [description, setDescription] = useState('')
     const [site, setSite] = useState('')
     const [companyName, setCompanyName] = useState('')
+    const orgId = useParams().id;
     
 
 
     const getInfo = useCallback(async () => {
         try{
+           
             const created = await request(`http://localhost:5000/contactor/company/getCompanyInfo/${orgId}`, 'get', null, {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
@@ -105,10 +107,10 @@ const UEditProfile = () => {
                 <div class=" mx-auto shadow-xl  bg-gradient-to-t from-teal-100  to-teal-300 bg-green-200 rounded-lg text-bold overflow-hidden w-3/6 h-full">
                     <div class="flex flex-col justify-center  w-full h-full">
                         
-                        <div class="flex flex-col col-auto my-3 items-center"> 
+                        <div class="flex flex-col col-auto my-3 items-center h-full overflow-scroll"> 
                             <Link to={`/org/${orgId}`}><button> Назад </button></Link>
-                            <h1 class="text-lg bold">Информация о пользователе {!loading && org && org.companyName}</h1>
-                            <img src={`http://localhost:5000/contactor/image/company/${org}`} width="150" class="rounded-full my-5" />
+                            <h1 class="text-lg bold">Информация о компании {!loading && org && org.companyName}</h1>
+                            <img src={`http://localhost:5000/contactor/image/company/${orgId}`} width="150" class="rounded-full my-5" />
                             <div class="my-5 w-3/6 h-full">
                                 {!loading && org && <input name="field_name" class=" border border-2 rounded-r px-4 py-2 my-3 w-full " type="text" placeholder="Название компании"  onChange={e=> setCompanyName(e.target.value)}/>}
                                 {!loading && org &&  <NumberFormat  className="block px-2 py-2 w-full border outline-non rounded-lg" format="+7 (###) ###-####" allowEmptyFormatting mask="_" onChange={e=> setNumber(e.target.value)}/>}
