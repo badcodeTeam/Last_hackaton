@@ -18,6 +18,17 @@ class PostServie {
         }
     }
 
+    async getCompanyPosts (companyName) {
+        try {
+            const CompanyPosts = await Post.findAll({where: {companyName}})
+            return {userPosts}
+        } catch (e) {
+            return null
+        }
+    }
+
+
+
     async addPost (postHeader, text,author) {
         try {
             const user = await User.findById(author)

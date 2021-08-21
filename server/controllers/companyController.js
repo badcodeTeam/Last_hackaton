@@ -1,4 +1,5 @@
 const CompanyService = require('../services/companyService')
+const PostService = require('../services/postService')
 const ApiError = require('../handler/apiError')
 
 class CompanyController {
@@ -8,7 +9,11 @@ class CompanyController {
         try {
             const companyId = req.params.id;
             const companyData = await CompanyService.getCompanyInfo(companyId)
-            return res.json(companyData)
+            const companyPosts = await PostService.getCompanyPosts(companyData.companyName)
+            if(!companyPosts) {
+                return res.json(companyData)
+            }
+            return res.json(companyData, companyPosts)
         } catch (e) {
             next(e)
         }
@@ -17,6 +22,7 @@ class CompanyController {
     //  http://localhost:5000/contactor/company/addCompany
     async addCompany (req, res, next) {
         try{
+            console.log(req.body)
             const {ownerId,companyName, entrepreneur, direction, building, floor} = req.body
             const createCompany = await CompanyService.addCompany(ownerId, companyName, entrepreneur, direction, building, floor)
             return res.json(createCompany)
@@ -42,6 +48,17 @@ class CompanyController {
             const allCompaniesData = await CompanyService.getAllCompanies()
             return res.json(allCompaniesData)
         } catch(e){
+            next(e)
+        }
+    }
+
+    //  http://localhost:5000/contactor/company/addMember
+    async addMember (req, res, next) {
+        try{
+            const {companyId, userId} = req.body
+            const addMember = await CompanyService.addMember(companyId, userId)
+            return res.json(addMember)
+        } catch (e) {
             next(e)
         }
     }

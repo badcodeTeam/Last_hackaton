@@ -12,21 +12,21 @@ class CompanyService {
             }
             return {company}
         } catch (e) {
-            return null
+            return e
         }
 
     }
 
-    async addCompany(userId, companyName) {
+    async addCompany(ownerId, companyName, entrepreneur, direction, building, floor) {
         try {
-            const user = await User.findById(userId)
+            const user = await User.findById(ownerId)
             if(!user){
                 throw ApiError.BadRequestError('Пользователь не был найден')
             }
-            const createCompany = await Company.create({companyName, owner:userId, entrepreneur, direction, building, floor})
+            const createCompany = await Company.create({companyName, owner:ownerId, entrepreneur, direction, building, floor})
             return {createCompany}
         } catch (e) {
-            return null
+            return e
         }
     }
 
@@ -38,7 +38,7 @@ class CompanyService {
             }
             return {UpdateCompany}
         } catch(e){
-            return null
+            return e
         }
     }
 
@@ -50,7 +50,20 @@ class CompanyService {
             }
             return {getAllCompanies}
         } catch(e){
-            return null
+            return e
+        }
+    }
+
+    async addMember(companyId, userId) {
+        try {
+            const user = await User.findById(userId)
+            if(!user){
+                throw ApiError.BadRequestError('Пользователь не был найден')
+            }
+            const addMember = await Company.findByIdAndUpdate(companyId, {$push: { members:userId }}) 
+            return {addMember}
+        } catch (e) {
+            return e
         }
     }
 }
