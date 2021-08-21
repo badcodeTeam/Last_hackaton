@@ -10,7 +10,7 @@ const Navbar = () => {
       <div className="flex items-center justify-evenly w-full h-full">
         <div>
           <p className="text-left text-2xl text-green-400">Контактор</p>
-          <p className="text-xs">платформа управления</p>
+          <p className="text-xs ml-1">креативный кластер</p>
         </div>
         <NavButton>Главная</NavButton>
         <NavButton>Личный кабинет</NavButton>
