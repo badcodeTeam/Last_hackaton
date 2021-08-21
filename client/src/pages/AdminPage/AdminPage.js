@@ -73,7 +73,22 @@ const AdminPage = () => {
                                     </div>
                                 </div>
                             </>
-                            
+                        }
+                        {type===3 && 
+                            <>
+                                <div className="w-5/6 flex flex-col my-2 relative">
+                                    <h1 class="text-xl my-1 text-black font-large">Создание организации</h1> 
+                                    <input name="field_name" class=" border border-2 rounded-r px-4 py-2 my-3 w-full " type="text" placeholder="Название организации"  />
+                                    <input name="field_name" class=" border border-2 rounded-r px-4 py-2 my-3 w-full " type="text" placeholder="Владелец (ИП)"  />
+                                    <input name="field_name" class=" border border-2 rounded-r px-4 py-2 my-3 w-full " type="text" placeholder="Владелец (ID)"  />
+                                    <input name="field_name" class=" border border-2 rounded-r px-4 py-2 my-3 w-full " type="text" placeholder="Телефон"  />
+                                    <input name="field_name" class=" border border-2 rounded-r px-4 py-2 my-3 w-full " type="text" placeholder="Направление (можно оставить пустым)"  />
+                                    <input name="field_name" class=" border border-2 rounded-r px-4 py-2 my-3 w-full " type="text" placeholder="Офис (Строение, номер офиса)"  />
+                                    <div className=" w-full  ">
+                                        <button className="absolute top-50 left-50 border-2 border-green-400 px-1 py-1 hover:border-green-400 hover:bg-green-400 hover:text-white">Создать</button>
+                                    </div>
+                                </div>
+                            </>
                         }
                     </div>
                 </div>
