@@ -9,8 +9,11 @@ class CompanyController {
         try {
             const companyId = req.params.id;
             const companyData = await CompanyService.getCompanyInfo(companyId)
-            //const companyPosts = await PostService.getCompanyPosts(companyData._id)
-            return res.json(companyData)
+            const companyPosts = await PostService.getCompanyPosts(companyData.companyName)
+            if(!companyPosts) {
+                return res.json(companyData)
+            }
+            return res.json(companyData, companyPosts)
         } catch (e) {
             next(e)
         }
@@ -19,6 +22,7 @@ class CompanyController {
     //  http://localhost:5000/contactor/company/addCompany
     async addCompany (req, res, next) {
         try{
+            console.log(req,body)
             const {ownerId,companyName, entrepreneur, direction, building, floor} = req.body
             const createCompany = await CompanyService.addCompany(ownerId, companyName, entrepreneur, direction, building, floor)
             return res.json(createCompany)
