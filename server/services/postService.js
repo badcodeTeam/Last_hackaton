@@ -23,7 +23,7 @@ class PostServie {
     async getCompanyPosts (companyName) {
         try {
             const CompanyPosts = await Post.findAll({where: {companyName}})
-            return {userPosts}
+            return {CompanyPosts}
         } catch (e) {
             return null
         }
