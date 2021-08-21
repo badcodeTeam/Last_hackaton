@@ -1,0 +1,23 @@
+.message-item {
+  width: 30%;
+  margin: 8px;
+  padding: 12px 8px;
+  word-break: break-word;
+  border-radius: 4px;
+  color: white;
+}
+
+.my-message {
+  @apply bg-green-400;
+  margin-left: auto;
+}
+
+.received-message {
+  @apply bg-gray-300;
+  @apply text-black;
+  margin-right: auto;
+}
+
+.contactItem{
+    width: 95%;
+}
