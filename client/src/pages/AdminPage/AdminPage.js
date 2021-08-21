@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
+import Select from '../../Components/UI/Select';
 
 const AdminPage = () => {
     const [type, setType] = useState(1)
-
+    
 
 
     return (
@@ -82,8 +83,15 @@ const AdminPage = () => {
                                     <input name="field_name" class=" border border-2 rounded-r px-4 py-2 my-3 w-full " type="text" placeholder="Владелец (ИП)"  />
                                     <input name="field_name" class=" border border-2 rounded-r px-4 py-2 my-3 w-full " type="text" placeholder="Владелец (ID)"  />
                                     <input name="field_name" class=" border border-2 rounded-r px-4 py-2 my-3 w-full " type="text" placeholder="Телефон"  />
-                                    <input name="field_name" class=" border border-2 rounded-r px-4 py-2 my-3 w-full " type="text" placeholder="Направление (можно оставить пустым)"  />
-                                    <input name="field_name" class=" border border-2 rounded-r px-4 py-2 my-3 w-full " type="text" placeholder="Офис (Строение, номер офиса)"  />
+                                    <Select>
+                                        <option>Искусство</option>
+                                        <option>IT</option>
+                                        <option>Магазин</option>
+                                        <option>Услуги</option>
+                                        <option>Офис</option>
+                                    </Select>
+                                    <input name="field_name" class=" border border-2 rounded-r px-4 py-2 my-3 w-full " type="text" placeholder="Офис (Строение)"  />
+                                    <input name="field_name" class=" border border-2 rounded-r px-4 py-2 my-3 w-full " type="text" placeholder="Офис (Этаж)"  />
                                     <div className=" w-full  ">
                                         <button className="absolute top-50 left-50 border-2 border-green-400 px-1 py-1 hover:border-green-400 hover:bg-green-400 hover:text-white">Создать</button>
                                     </div>
