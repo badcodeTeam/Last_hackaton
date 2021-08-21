@@ -30,9 +30,9 @@ class CompanyService {
         }
     }
 
-    async updateCompany(companyId, companyName,companyEmail,companyNumber,schedule) {
+    async updateCompany(companyId, companyName,companyEmail,companyNumber,scheduleStart,scheduleEnd,description,building,floor,site) {
         try{
-            const UpdateCompany = await Company.findByIdAndUpdate(companyId, {companyName,companyEmail,companyNumber,schedule})
+            const UpdateCompany = await Company.findByIdAndUpdate(companyId, {companyName,companyEmail,companyNumber,scheduleStart,scheduleEnd,description,building,floor,site})
             if(!UpdateCompany){
                 throw ApiError.BadRequestError('Ошибка обновления')
             }
