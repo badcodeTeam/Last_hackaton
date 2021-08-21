@@ -5,15 +5,15 @@ import { publicRoutes, authRoutes } from '../../routes';
 export const AppRouter = ({auth}) => {
     return(
         <Switch>
-            {publicRoutes.map(route => {
+            {publicRoutes.map((route, index) => {
                 return(
-                    <Route path={route.path} component={route.Component} />
+                    <Route key={index} path={route.path} component={route.Component} />
                 )
             })}
 
-            {auth && authRoutes.map(route => {
+            {auth && authRoutes.map((route, index) => {
                 return(
-                    <Route path={route.path} component={route.Component} />
+                    <Route key={index} path={route.path} component={route.Component} />
                 )
             })}
         </Switch>

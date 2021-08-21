@@ -25,8 +25,7 @@ const io = new Server(server, {cors: {
 
 io.on('connection', socket => {
     console.log("User connected");
-
-    io.emit('message', {"hello": "hello"})
+    io.emit('message',{ topic: "Fifth notification", text: "Fifth notification text" })
 })
 
 const start = async () => {
