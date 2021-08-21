@@ -10,7 +10,11 @@ class UserController {
             const userId = req.params.id;
             const userData = await userService.getUserData(userId)
             const userPosts = await postService.getClientPosts(userId)
+            if(!userPosts) {
+                return res.json(userData)
+            }
             return res.json(userData, userPosts)
+            
         } catch (e) {
             next(e)
         }
