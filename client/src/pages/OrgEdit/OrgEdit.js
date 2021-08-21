@@ -106,7 +106,7 @@ const UEditProfile = () => {
                     <div class="flex flex-col justify-center  w-full h-full">
                         
                         <div class="flex flex-col col-auto my-3 items-center"> 
-                            <Link to={`/profile/${orgId}`}><button> Назад </button></Link>
+                            <Link to={`/org/${orgId}`}><button> Назад </button></Link>
                             <h1 class="text-lg bold">Информация о пользователе {!loading && org && org.companyName}</h1>
                             <img src={`http://localhost:5000/contactor/image/company/${org}`} width="150" class="rounded-full my-5" />
                             <div class="my-5 w-3/6 h-full">
