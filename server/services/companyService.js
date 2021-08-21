@@ -23,16 +23,16 @@ class CompanyService {
             if(!user){
                 throw ApiError.BadRequestError('Пользователь не был найден')
             }
-            const createCompany = await Company.create({companyName, owner:userId})
+            const createCompany = await Company.create({companyName, owner:userId, entrepreneur, direction, building, floor})
             return {createCompany}
         } catch (e) {
             return null
         }
     }
 
-    async updateCompany(companyId, companyName,companyEmail,companyNumber,scheduleStart,scheduleEnd,description,building,floor,site) {
+    async updateCompany(companyId, companyName,companyEmail,companyNumber,scheduleStart,scheduleEnd,description,site) {
         try{
-            const UpdateCompany = await Company.findByIdAndUpdate(companyId, {companyName,companyEmail,companyNumber,scheduleStart,scheduleEnd,description,building,floor,site})
+            const UpdateCompany = await Company.findByIdAndUpdate(companyId, {companyName,companyEmail,companyNumber,scheduleStart,scheduleEnd,description,site})
             if(!UpdateCompany){
                 throw ApiError.BadRequestError('Ошибка обновления')
             }

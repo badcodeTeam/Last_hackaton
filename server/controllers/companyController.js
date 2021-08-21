@@ -19,8 +19,8 @@ class CompanyController {
         try{
             const token = req.headers.authorization.split(' ')[1] // Bearer asfasnfkajsfnjk
             const decodedToken = jwt.verify(token, process.env.SECRET)
-            const {companyName} = req.body
-            const createCompany = await CompanyService.addCompany(decodedToken.id, companyName)
+            const {companyName, entrepreneur, direction, building, floor} = req.body
+            const createCompany = await CompanyService.addCompany(decodedToken.id, companyName, entrepreneur, direction, building, floor)
             return res.json(createCompany)
         } catch (e) {
             next(e)
@@ -30,8 +30,8 @@ class CompanyController {
     //  http://localhost:5000/contactor/company/updateCompany
     async updateCompany(req, res, next) {
         try{
-            const {companyId, companyName,companyEmail,companyNumber,scheduleStart,scheduleEnd,description,building,floor,site} = req.body
-            const companyUpdate = await CompanyService.updateCompany(companyId, companyName,companyEmail,companyNumber,scheduleStart,scheduleEnd,description,building,floor,site)
+            const {companyId, companyName,companyEmail,companyNumber,scheduleStart,scheduleEnd,description,site} = req.body
+            const companyUpdate = await CompanyService.updateCompany(companyId, companyName,companyEmail,companyNumber,scheduleStart,scheduleEnd,description,site)
             return res.json(companyUpdate)
         } catch(e){
             next(e)

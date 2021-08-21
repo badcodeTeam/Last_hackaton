@@ -16,6 +16,19 @@ class PostServie {
             return null
         }
     }
+
+    async addPost (postHeader, text,author) {
+        try {
+            const user = await User.findById(author)
+            if(!user){
+                throw ApiError.BadRequestError('Пользователь не был найден')
+            }
+            const createPost = await Post.create({postHeader, text, author})
+            return {createPost}
+        } catch (e) {
+            return null
+        }
+    }
 }
 
 module.exports = new PostServie();
