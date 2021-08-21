@@ -5,6 +5,7 @@ import ContactPage from './pages/ContactPage.jsx'
 import ResidentsPage from './pages/ResidentPage/ResidentsPage.jsx'
 import UEditProfile from './pages/UEditProfile'
 import EventPage from './pages/EventsPage/EventsPage.jsx'
+import AdminPage from './pages/AdminPage/AdminPage'
 
 export const publicRoutes = [
     {
@@ -42,6 +43,10 @@ export const authRoutes = [
     {
         path: '/edit/user/:id', 
         Component: UEditProfile
+    },
+    {
+        path: '/admin',
+        Component: AdminPage
     }
 ]
 
