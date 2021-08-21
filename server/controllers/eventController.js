@@ -33,6 +33,16 @@ class EventController {
             }
         }
 
+        //  http://localhost:5000/contactor/event/getEvents
+        async getEvents (req,res,next) {
+            try{
+                const allEvents = await EventService.getAllEvents();
+                return res.json(allEvents)
+            } catch (e) {
+                next(e)
+            }
+        }
+
 }
 
 module.exports = new EventController();

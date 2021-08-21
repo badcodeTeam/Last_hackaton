@@ -13,6 +13,7 @@ class EventService {
         const eventLink = uuid.v4()
         const createEvent = await Event.create({eventName, eventLink, eventCreator:userId})
         const activationLink = process.env.API_URL + '/contactor/event/activate/' + eventLink  
+        return {createEvent,eventLink,activationLink}
     }
 
     async activate (eventLink) {
@@ -23,6 +24,18 @@ class EventService {
         const counter = (event.counter + 1)
         await event.updateOne({counter})
         await event.save()
+    }
+
+    async getAllEvents() {
+        try{
+            const getAllEvents = await Event.find()
+            if(!getAllEvents){
+                throw ApiError.BadRequestError('Мероприятия не найдены')
+            }
+            return {getAllEvents}
+        } catch(e){
+            return e
+        }
     }
 
 }
