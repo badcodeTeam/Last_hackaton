@@ -26,14 +26,9 @@ export const EventCard = ({
           backdropFilter: `blur(30px)`,
         }}
       >
-       
-        
             <p className="text-3xl font-bold">{residentName}</p>
             <p className="text-2xl text-green-400 font-light">{residentDescription}</p>
-       
-        
       </div>
-      
     </li>
   );
 };
