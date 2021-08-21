@@ -9,7 +9,7 @@ const ResidentList = () => {
         residentBuilding={1}
         residentFloor={1}
         residentName="ImpreStudio"
-        residentType="Art gallery"
+        residentDescription="Art gallery"
         residentTimeStart="8:00"
         residentTimeEnd="18:00"
       />
@@ -18,7 +18,7 @@ const ResidentList = () => {
         residentBuilding={1}
         residentFloor={1}
         residentName="GameDungeon"
-        residentType="Gaming club"
+        residentDescription="Gaming club"
         residentTimeStart="8:00"
         residentTimeEnd="24:00"
       />
@@ -27,7 +27,7 @@ const ResidentList = () => {
         residentBuilding={1}
         residentFloor={1}
         residentName="TogWork"
-        residentType="Coworking office"
+        residentDescription="Coworking office"
         residentTimeStart="8:00"
         residentTimeEnd="24:00"
       />
@@ -36,7 +36,7 @@ const ResidentList = () => {
         residentBuilding={1}
         residentFloor={1}
         residentName="Garage"
-        residentType="Recording studio"
+        residentDescription="Recording studio"
         residentTimeStart="8:00"
         residentTimeEnd="24:00"
       />
