@@ -1,7 +1,7 @@
 import {AuthPage, RegisterPage} from './pages'
 import MainPage from './pages/MainPage/MainPage.jsx'
 import UProfilePage from './pages/UProfilePage'
-import ContactPage from './pages/ContactPage.jsx'
+import ContactPage from './pages/ContactPage/ContactPage.jsx'
 import ResidentsPage from './pages/ResidentPage/ResidentsPage.jsx'
 import UEditProfile from './pages/UEditProfile'
 import EventPage from './pages/EventsPage/EventsPage.jsx'

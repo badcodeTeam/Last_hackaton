@@ -30,7 +30,7 @@ Modal.setAppElement("#root");
 
 const Navbar = () => {
 
-  const { userId, logout } = useContext(AuthContext);
+  const { userId, logout, isAuthenticated } = useContext(AuthContext);
   const [modalActive, setModalActive] = useState(false);
 
   const openModal = () => {
@@ -95,7 +95,7 @@ const Navbar = () => {
           <NavButton>Резиденты</NavButton>
         </Link>
         <Link to="/contact_us">
-          <NavButton>Контакты</NavButton>
+          <NavButton>{!isAuthenticated ? ('Контакты') : ('Связь')}</NavButton>
         </Link>
         <NotificationBar/>
         <NavButton onClick={logout} custom="text-white btn-remove-border">...</NavButton>
