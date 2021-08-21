@@ -1,6 +1,8 @@
 const Router = require('express')
 const router = new Router
 const userController = require('../controllers/userController')
+const checkRoleMiddleware = require('../middlewares/checkRoleMiddleware')
+const authMiddleware = require('../middlewares/authMiddleware')
 
 
 //  http://localhost:5000/contactor/user/getClientInfo/:id

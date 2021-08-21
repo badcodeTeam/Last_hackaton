@@ -21,9 +21,7 @@ const customStyles = {
 
 Modal.setAppElement("#root");
 
-
 const Navbar = () => {
-
   const { userId, logout, isAuthenticated } = useContext(AuthContext);
   const [modalActive, setModalActive] = useState(false);
 
@@ -47,20 +45,29 @@ const Navbar = () => {
           </div>
         </Link>
         <NavButton>Главная</NavButton>
-        <Link to={profileLink}>
-          <NavButton>Личный кабинет</NavButton>
+        {isAuthenticated && (
+          <Link to={profileLink}>
+            <NavButton>Личный кабинет</NavButton>
+          </Link>
+        )}
+        {!isAuthenticated && (
+          <Link to="/auth">
+            <NavButton>Войти</NavButton>
+          </Link>
+        )}
+        <Link to="/events">
+          <NavButton>Мероприятия</NavButton>
         </Link>
-            <Link to="/events">
-              <NavButton>Будущие мероприятия</NavButton>
-            </Link>
         <Link to="/residents">
           <NavButton>Резиденты</NavButton>
         </Link>
         <Link to="/contact_us">
-          <NavButton>{!isAuthenticated ? ('Контакты') : ('Связь')}</NavButton>
+          <NavButton>{!isAuthenticated ? "Контакты" : "Связь"}</NavButton>
         </Link>
-        <NotificationBar/>
-        <NavButton onClick={logout} custom="text-white btn-remove-border">...</NavButton>
+        <NotificationBar />
+        <NavButton onClick={logout} custom="text-white btn-remove-border">
+          ...
+        </NavButton>
       </div>
     </nav>
   );

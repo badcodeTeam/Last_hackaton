@@ -10,7 +10,7 @@ class CompanyService {
             if(!company){
                 throw ApiError.BadRequestError('Компания не была найдена')
             }
-            return {company}
+            return company
         } catch (e) {
             return e
         }

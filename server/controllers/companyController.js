@@ -13,7 +13,7 @@ class CompanyController {
             if(!companyPosts) {
                 return res.json(companyData)
             }
-            return res.json(companyData, companyPosts)
+            return res.json({companyData, companyPosts})
         } catch (e) {
             next(e)
         }

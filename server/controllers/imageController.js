@@ -1,6 +1,7 @@
 const Img = require('../models/Image')
 const User = require('../models/User')
 const Company = require('../models/Company')
+const Event = require('../models/Event')
 const jwt = require('jsonwebtoken');
 const ApiError = require('../handler/apiError')
 const path = require('path')
@@ -92,6 +93,50 @@ class ImgController {
         })
         //const saveAvatar = await User.updateOne({_id:decodedToken.id}, {avatar})
         const saveImage = await Company.findByIdAndUpdate(companyId, {img:image})
+        const fileSave = new Img({path: image})
+
+        await fileSave.save()
+        return res.json(saveImage)
+    }
+
+    //  http://localhost:5000/contactor/image/event/:id
+    async getEventImage(req, res, next){
+        const eventId = req.params.id;
+        const event = await Event.findById(eventId)
+        if(!event){
+            return next(ApiError.BadRequestError('Мероприятие не найдено'))
+        }
+
+        const img = await Img.findOne({path: event.img})
+    
+        if(!img){
+            return res.sendFile(path.join(__dirname, '../public/events', 'default.jpeg'))
+        }
+        return res.sendFile(path.join(__dirname, '../public/events', event.img))
+    }
+
+    //  http://localhost:5000/contactor/image/uploadEvent
+    async uploadCompany(req, res, next) {
+
+        const file = req.files.files
+        console.log(req.files.files)
+        const {eventId} = req.body
+        const event = await Company.findById(eventId)
+        if(!event){
+        return next(ApiError.BadRequestError('Компания не найдена'))
+        }
+        if(!file) {
+        return next(ApiError.BadRequestError('Файлы отсутствуют'))
+        }
+        const type = file.name.split('.').pop()
+        const image = eventId + '.' + type
+        file.mv(`public/events/` + image, function(err) {
+        if(err) {
+            return next(ApiError.internal('Ошибка сохранения файла'))
+            }
+        })
+        //const saveAvatar = await User.updateOne({_id:decodedToken.id}, {avatar})
+        const saveImage = await Event.findByIdAndUpdate(eventId, {img:image})
         const fileSave = new Img({path: image})
 
         await fileSave.save()

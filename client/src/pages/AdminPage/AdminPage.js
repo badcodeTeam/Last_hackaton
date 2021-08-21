@@ -1,12 +1,14 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import Select from '../../Components/UI/Select';
 import NumberFormat from 'react-number-format';
 import {useHttp} from "../../utils"
 import {AuthContext} from "../../utils/context/Auth.context"
+import {useHistory} from "react-router-dom"
 
 const AdminPage = () => {
     const {request} = useHttp()
-    const {token} = useContext(AuthContext)
+    const {token, role} = useContext(AuthContext)
+    const history = useHistory()
     const [type, setType] = useState(1)
     const [form, setForm] = useState({
             companyName: '',
@@ -34,6 +36,12 @@ const AdminPage = () => {
     const changeHandler = event => {
         setForm({ ...form , [event.target.name]: event.target.value})
     }
+
+    useEffect(() => {
+        if(role !== 4){
+            history.push('/')
+        }
+    }, [history, role])
 
 
     return (
@@ -110,7 +118,7 @@ const AdminPage = () => {
                                 <div className="w-5/6 flex flex-col my-2 relative">
                                     <h1 class="text-xl my-1 text-black font-large">Создание организации</h1> 
                                     <input name="companyName" class=" border border-2 rounded-r px-4 py-2 my-3 w-full " type="text" placeholder="Название организации" onChange={changeHandler} />
-                                    <input name="entrepreneur" class=" border border-2 rounded-r px-4 py-2 my-3 w-full " type="text" placeholder="Владелец (ИП)" onChange={changeHandler} />
+                                    <input name="entrepreneur" class=" border border-2 rounded-r px-4 py-2 my-3 w-full " type="text" placeholder="Владелец (ИНН)" onChange={changeHandler} />
                                     <input name="ownerId" class=" border border-2 rounded-r px-4 py-2 my-3 w-full " type="text" placeholder="Владелец (ID)" onChange={changeHandler} />
                                     
                                     <Select name="direction" onChange={changeHandler}>

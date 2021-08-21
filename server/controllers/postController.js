@@ -24,7 +24,7 @@ class PostController {
                 const token = req.headers.authorization.split(' ')[1] // Bearer asfasnfkajsfnjk
                 const decodedToken = jwt.verify(token, process.env.SECRET)
                 const {postHeader,text,companyName} = req.body;
-                const createPost = await PostService.addPost(postHeader, text, decodedToken.id, companyName)
+                const createPost = await PostService.addPostFromCompany(postHeader, text, decodedToken.id, companyName)
                 return res.json(createPost)
             } catch (e) {
                 next(e)
