@@ -28,7 +28,7 @@ const customStyles = {
 Modal.setAppElement("#root");
 
 
-const Navbar = ({socket}) => {
+const Navbar = () => {
 
   const { userId, logout } = useContext(AuthContext);
   const [modalActive, setModalActive] = useState(false);
@@ -97,7 +97,7 @@ const Navbar = ({socket}) => {
         <Link to="/contact_us">
           <NavButton>Контакты</NavButton>
         </Link>
-        <NotificationBar socket={socket}/>
+        <NotificationBar/>
         <NavButton onClick={logout} custom="text-white btn-remove-border">...</NavButton>
       </div>
     </nav>
