@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 import NotificationBar from "../NotificationBar/NotificationBar.jsx";
 import Form from "../UI/Form.jsx";
 import Input from "../UI/Input.jsx";
@@ -12,7 +12,6 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import TimePicker from "react-time-picker";
 import MyButton from "../UI/MyButton.jsx";
-import io from 'socket.io-client'
 
 const customStyles = {
   content: {
@@ -28,16 +27,11 @@ const customStyles = {
 
 Modal.setAppElement("#root");
 
-const Navbar = () => {
-  const { userId, logout, token } = useContext(AuthContext);
-  const [modalActive, setModalActive] = useState(false);
 
-  useEffect(() => {
-      const socket = io("http://localhost:5000/");
-      socket.on('message', (message) => {
-        console.log(message)
-      })
-  }, [])
+const Navbar = ({socket}) => {
+
+  const { userId, logout } = useContext(AuthContext);
+  const [modalActive, setModalActive] = useState(false);
 
   const openModal = () => {
     setModalActive(true);
@@ -62,9 +56,9 @@ const Navbar = () => {
         <Link to={profileLink}>
           <NavButton>Личный кабинет</NavButton>
         </Link>
-        <div class="dropdown">
+        <div className="dropdown">
           <NavButton>Мероприятия</NavButton>
-          <div class="dropdown-content">
+          <div className="dropdown-content">
             <NavButton onClick={openModal}>Подать заявку</NavButton>
             <Modal
               isOpen={modalActive}
@@ -103,8 +97,8 @@ const Navbar = () => {
         <Link to="/contact_us">
           <NavButton>Контакты</NavButton>
         </Link>
-        <NotificationBar />
-        <NavButton onClick={logout} customStyles="text-white btn-remove-border">...</NavButton>
+        <NotificationBar socket={socket}/>
+        <NavButton onClick={logout} custom="text-white btn-remove-border">...</NavButton>
       </div>
     </nav>
   );

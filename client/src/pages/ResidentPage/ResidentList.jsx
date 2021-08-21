@@ -38,9 +38,10 @@ const ResidentList = () => {
       />
       */}
 
-      {!loading && orgs && orgs.map(org => {
+      {!loading && orgs && orgs.map((org, index) => {
         return (
           <ResidentCard
+            key={index}
             residentPreviewImage="https://images.unsplash.com/photo-1608434934019-f8dd8d7e8cae?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80"
             residentBuilding={org.building}
             residentFloor={org.floor}

@@ -34,7 +34,7 @@ const ContactPage = () => {
         <Input type="tel" placeholder="Телефон" />
         <Input type="email" placeholder="E-mail" />
         <Input type="text" placeholder="Организация" />
-        <TextArea placeholder="Комментарий" resizeable={false}/>
+        <TextArea placeholder="Комментарий" resize={false}/>
         <MyButton additionalClasses="text-xl text-green-700 bg-white rounded-2xl">Связаться</MyButton>
       </Form>
     </div>
