@@ -1,4 +1,5 @@
 const CompanyService = require('../services/companyService')
+const PostService = require('../services/postService')
 const ApiError = require('../handler/apiError')
 
 class CompanyController {
@@ -8,6 +9,7 @@ class CompanyController {
         try {
             const companyId = req.params.id;
             const companyData = await CompanyService.getCompanyInfo(companyId)
+            //const companyPosts = await PostService.getCompanyPosts(companyData._id)
             return res.json(companyData)
         } catch (e) {
             next(e)
