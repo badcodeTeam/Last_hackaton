@@ -2,6 +2,8 @@ const Router = require('express')
 const router = new Router
 const AuthController = require('../controllers/authController')
 const {body} = require('express-validator')
+const checkRoleMiddleware = require('../middlewares/checkRoleMiddleware')
+const authMiddleware = require('../middlewares/authMiddleware')
 
 //  http://localhost:5000/contactor/authUser/register
 router.post('/register',

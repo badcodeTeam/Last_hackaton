@@ -1,6 +1,7 @@
 const Router = require('express')
 const router = new Router
 const authMiddleware = require('../middlewares/authMiddleware')
+const checkRoleMiddleware = require('../middlewares/checkRoleMiddleware')
 
 const authRoutes = require('./authRoutes')
 const imageRoutes = require('./imageRoutes')

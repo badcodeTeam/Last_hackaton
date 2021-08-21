@@ -5,7 +5,7 @@ const Post = new Schema({
     text: {type:String},                                    //Текст
     author: {type: Schema.Types.ObjectId, ref: 'User'},     //Автор
     companyName : {type:String},                            //Название компании
-    date : { type: DataTypes.DATE, required: true}          //Дата
+    date : { type: DataTypes.DATE}                          //Дата
 })
 
 module.exports = model('Post', Post)

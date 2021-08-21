@@ -1,6 +1,7 @@
 const Router = require('express');
 const router = new Router();
-
+const checkRoleMiddleware = require('../middlewares/checkRoleMiddleware')
+const authMiddleware = require('../middlewares/authMiddleware')
 const imageController = require('../controllers/imageController')
 
 //  http://localhost:5000/contactor/image/user/:id 

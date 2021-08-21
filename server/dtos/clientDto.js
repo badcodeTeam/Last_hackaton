@@ -6,6 +6,7 @@ module.exports = class ClientDto {
     position;
     avatar;
     number;
+    
 
     constructor(model) {
         this.email = model.email;
