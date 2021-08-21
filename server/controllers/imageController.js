@@ -92,7 +92,7 @@ class ImgController {
         }
         })
         //const saveAvatar = await User.updateOne({_id:decodedToken.id}, {avatar})
-        const saveImage = await Company.findByIdAndUpdate(companyId, {image})
+        const saveImage = await Company.findByIdAndUpdate(companyId, {img:image})
         const fileSave = new Img({path: image})
 
         await fileSave.save()
