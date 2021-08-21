@@ -33,6 +33,7 @@ const OrgPage = () => {
     }, [getUser])
 
     //6120a5a7f8f9406ce804733b 6120a5a7f8f9406ce804733b
+    // Сроки, масштабируемость
 
     return (
         <div className="container">
