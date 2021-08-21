@@ -26,7 +26,7 @@ class CompanyService {
             const createCompany = await Company.create({companyName, owner:ownerId, entrepreneur, direction, building, floor})
             return {createCompany}
         } catch (e) {
-            return null
+            return e
         }
     }
 
