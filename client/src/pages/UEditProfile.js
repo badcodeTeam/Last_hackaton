@@ -4,6 +4,7 @@ import {useHttp} from "../utils"
 import {AuthContext} from "../utils/context/Auth.context"
 import NumberFormat from 'react-number-format';
 import axios from 'axios'
+import { Link } from "react-router-dom";
 
 
 const UEditProfile = () => {
@@ -79,6 +80,7 @@ const UEditProfile = () => {
                     <div class="flex flex-col justify-center  w-full h-full">
                         
                         <div class="flex flex-col col-auto my-3 items-center"> 
+                            <Link to={`/profile/${usrId}`}><button> Назад </button></Link>
                             <h1 class="text-lg bold">Информация о пользователе {!loading && user && user.name}</h1>
                             <img src={`http://localhost:5000/contactor/image/user/${usrId}`} width="150" class="rounded-full my-5" />
                             <div class="my-5 w-3/6 h-full">
