@@ -58,7 +58,7 @@ class ImgController {
     async getCompanyImage(req, res, next){
         const companyId = req.params.id;
         const company = await Company.findById(companyId)
-        if(!user){
+        if(!company){
             return next(ApiError.BadRequestError('Компания не найдена'))
         }
 
