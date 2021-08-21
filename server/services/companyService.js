@@ -17,13 +17,13 @@ class CompanyService {
 
     }
 
-    async addCompany(userId, companyName) {
+    async addCompany(ownerId, companyName, entrepreneur, direction, building, floor) {
         try {
             const user = await User.findById(userId)
             if(!user){
                 throw ApiError.BadRequestError('Пользователь не был найден')
             }
-            const createCompany = await Company.create({companyName, owner:userId, entrepreneur, direction, building, floor})
+            const createCompany = await Company.create({companyName, owner:ownerId, entrepreneur, direction, building, floor})
             return {createCompany}
         } catch (e) {
             return null
