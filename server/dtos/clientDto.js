@@ -6,6 +6,7 @@ module.exports = class ClientDto {
     position;
     avatar;
     number;
+
     
 
     constructor(model) {
@@ -15,5 +16,6 @@ module.exports = class ClientDto {
         this.position = model.position;
         this.avatar = model.avatar;
         this.number = model.number;
+
     }
 }

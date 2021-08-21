@@ -5,13 +5,15 @@ const ApiError = require('../handler/apiError')
 
 class PostServie {
     
-    async getClientPosts (userId) {
+    async getClientPosts(userId) {
         try {
             const user = await User.findById(userId)
             if(!user){
                 throw ApiError.BadRequestError('Пользователь не был найден')
             }
-            const userPosts = await Post.findAll({where: {author:userId}})
+            console.log(user)
+            const userPosts = await Post.find({author:userId})
+            console.log(userPosts)
             return {userPosts}
         } catch (e) {
             return null
