@@ -1,4 +1,5 @@
 const userService = require('../services/userService')
+const postService = require('../services/postService')
 const ApiError = require('../handler/apiError')
 
 class UserController {
@@ -8,7 +9,8 @@ class UserController {
         try {
             const userId = req.params.id;
             const userData = await userService.getUserData(userId)
-            return res.json(userData)
+            const userPosts = await postService.getClientPosts(userId)
+            return res.json(userData, userPosts)
         } catch (e) {
             next(e)
         }
