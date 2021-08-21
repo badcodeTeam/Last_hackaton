@@ -22,7 +22,7 @@ class PostServie {
 
     async getCompanyPosts (companyName) {
         try {
-            const CompanyPosts = await Post.findAll({where: {companyName}})
+            const CompanyPosts = await Post.find({companyName})
             return {CompanyPosts}
         } catch (e) {
             return null
