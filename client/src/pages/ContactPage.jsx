@@ -1,10 +1,14 @@
-import React from "react";
+import {React, useContext} from "react";
 import MyButton from "../Components/UI/MyButton.jsx";
 import Input from "../Components/UI/Input.jsx";
 import TextArea from "../Components/UI/TextArea.jsx";
 import Form from '../Components/UI/Form.jsx';
+import {AuthContext} from '../utils//context/Auth.context'
 
 const ContactPage = () => {
+  
+  const {isAuthenticated} = useContext(AuthContext);
+
   return (
     <div className="w-full flex-grow p-10 grid grid-cols-6 grid-rows-3">
       <h1 className="col-start-1 col-end-5 text-5xl">
