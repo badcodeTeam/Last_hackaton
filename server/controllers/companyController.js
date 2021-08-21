@@ -17,10 +17,8 @@ class CompanyController {
     //  http://localhost:5000/contactor/company/addCompany
     async addCompany (req, res, next) {
         try{
-            const token = req.headers.authorization.split(' ')[1] // Bearer asfasnfkajsfnjk
-            const decodedToken = jwt.verify(token, process.env.SECRET)
-            const {companyName, entrepreneur, direction, building, floor} = req.body
-            const createCompany = await CompanyService.addCompany(decodedToken.id, companyName, entrepreneur, direction, building, floor)
+            const {ownerId,companyName, entrepreneur, direction, building, floor} = req.body
+            const createCompany = await CompanyService.addCompany(ownerId, companyName, entrepreneur, direction, building, floor)
             return res.json(createCompany)
         } catch (e) {
             next(e)

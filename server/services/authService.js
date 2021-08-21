@@ -9,6 +9,7 @@ const mailService = require('./mailService')
 class AuthService {
 
     async registration(email,password, name, number) {
+        
         const candidate = await User.findOne({email})
         if (candidate) {
             throw ApiError.BadRequestError('Пользователь с таким email уже существует')
