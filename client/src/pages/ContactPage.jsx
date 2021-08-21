@@ -1,4 +1,5 @@
 import React from "react";
+import MyButton from "../Components/UI/MyButton.jsx";
 import Input from "../Components/UI/Input.jsx";
 
 const ContactPage = () => {
@@ -32,7 +33,7 @@ const ContactPage = () => {
         <Input type="email" placeholder="E-mail" />
         <Input type="text" placeholder="Организация" />
         <textarea className="block text-sm py-3 px-4 rounded-lg w-full border outline-none resize-none" placeholder="Комментарий"/>
-        <button className="py-3 w-64 text-xl text-green-700 bg-white rounded-2xl">Связаться</button>
+        <MyButton additionalClasses="text-xl text-green-700 bg-white rounded-2xl">Связаться</MyButton>
       </form>
     </div>
   );

@@ -22,8 +22,12 @@ const Navbar = () => {
           {" "}
           <NavButton>Личный кабинет</NavButton>
         </Link>
-        <NavButton>Мероприятия</NavButton>
-        <NavButton>Резиденты</NavButton>
+        <Link to="/events">
+          <NavButton>Мероприятия</NavButton>
+        </Link>
+        <Link to="/residents">
+          <NavButton>Резиденты</NavButton>
+        </Link>
         <Link to="/contact_us">
           <NavButton>Контакты</NavButton>
         </Link>

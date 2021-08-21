@@ -10,17 +10,17 @@ body {
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
   color: #374151;
-  font-family: 'Nunito', sans-serif;
+  font-family: "Nunito", sans-serif;
 }
 
-#root{
+#root {
   display: flex;
   flex-flow: column;
   width: 100%;
   height: 100%;
 }
 
-.resize-none{
+.resize-none {
   resize: none;
 }
 
@@ -29,6 +29,21 @@ body {
 }
 
 .hide-scrollbar {
-  -ms-overflow-style: none;  
-  scrollbar-width: none; 
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.background-dim {
+  position: relative;
+  background-size: cover;
+}
+
+.background-dim::before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  background-color: rgba(0, 0, 0, 0.5);
 }

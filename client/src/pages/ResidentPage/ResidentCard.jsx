@@ -1,5 +1,4 @@
 import React from "react";
-import "./ResidentPage.css";
 
 const ResidentCard = ({
   residentPreviewImage,

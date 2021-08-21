@@ -1,0 +1,6 @@
+/* fix fix fix fix */
+
+.btn-remove-border:hover{
+    outline: none;
+    border: none;
+}

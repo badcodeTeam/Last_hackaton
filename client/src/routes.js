@@ -4,6 +4,7 @@ import UProfilePage from './pages/UProfilePage'
 import ContactPage from './pages/ContactPage.jsx'
 import ResidentsPage from './pages/ResidentPage/ResidentsPage.jsx'
 import UEditProfile from './pages/UEditProfile'
+import EventPage from './pages/EventsPage/EventsPage.jsx'
 
 export const publicRoutes = [
     {
@@ -26,7 +27,11 @@ export const publicRoutes = [
         path: '/residents',
         Component: ResidentsPage
     }
-    
+    ,
+    {
+        path: '/events',
+        Component: EventPage
+    }
 ]
 
 export const authRoutes = [
