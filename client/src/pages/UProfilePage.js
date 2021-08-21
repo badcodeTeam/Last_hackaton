@@ -3,11 +3,13 @@ import {useParams} from "react-router-dom"
 import {useHttp} from "../utils"
 import {AuthContext} from "../utils/context/Auth.context"
 import { Link } from "react-router-dom";
+import { PostCard } from './PostCard';
 
 const UProfilePage = () => {
     const [postText, setPostText] = useState('')
     const [postHeader, setPostHeader] = useState('')
     const [user, setUser] = useState(null)
+    const [posts, setPosts] = useState(null)
     const usrId = useParams().id;
     const {request, loading} = useHttp()
     const {token, userId} = useContext(AuthContext)
@@ -20,7 +22,8 @@ const UProfilePage = () => {
                 Authorization: `Bearer ${token}`
             })
             console.log(created)
-            setUser(created.clientDto)
+            setUser(created.userData.clientDto)
+            setPosts(created.userPosts.userPosts)
         }catch(e){
             console.log(e)
         }
@@ -77,27 +80,11 @@ const UProfilePage = () => {
                                 </div>
                             </>}
                         </div>
-                        <div className="flex flex-row my-5 h-2/6 w-5/6 bg-white rounded-lg shadow-md">
-                            <img src={`http://localhost:5000/contactor/image/user/${usrId}`}   className="my-auto mx-5 rounded-full h-3/6" />
-                            <div className="flex flex-col my-auto">
-                                <h5 className="text-md  text-black font-medium">Дмитриев Максим Сергеевич</h5> 
-                                <span className="text-sm text-black">Аннонс мероприятия по работе в сфере IT. Более детальная информация появится на странице организации.</span>
-                            </div>
-                        </div>
-                        <div className="flex flex-row my-5 h-2/6 w-5/6 bg-white rounded-lg shadow-md">
-                            <img src={`http://localhost:5000/contactor/image/user/${usrId}`}   className="my-auto mx-5 rounded-full h-3/6" />
-                            <div className="flex flex-col my-auto">
-                                <h5 className="text-md  text-black font-medium">Дмитриев Максим Сергеевич</h5> 
-                                <span className="text-sm text-black">Аннонс мероприятия по работе в сфере IT. Более детальная информация появится на странице организации.</span>
-                            </div>
-                        </div>
-                        <div className="flex flex-row my-5 h-2/6 w-5/6 bg-white rounded-lg shadow-md">
-                            <img src={`http://localhost:5000/contactor/image/user/${usrId}`}   className="my-auto mx-5 rounded-full h-3/6" />
-                            <div className="flex flex-col my-auto">
-                                <h5 className="text-md  text-black font-medium">Дмитриев Максим Сергеевич</h5> 
-                                <span className="text-sm text-black">Аннонс мероприятия по работе в сфере IT. Более детальная информация появится на странице организации.</span>
-                            </div>
-                        </div>
+                        {!loading && posts && posts.map(post => {
+                            return (
+                                <PostCard post={post} />
+                            )
+                        })}
                     </div>
                 </div>
             </div>
