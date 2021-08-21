@@ -4,15 +4,15 @@ import {AuthContext} from "../../utils/context/Auth.context"
 import {EventCard} from './EventCard'
 
 const EventPage = () => {
-  const [orgs, setOrgs] = useState([])
+  const [events, setEvents] = useState([])
   const {loading, request} = useHttp()
   
 
   const getOrgs = useCallback(async () => {
     try{
-      const data = await request('http://localhost:5000/contactor/company/getAllCompanies', 'get', null, {})
+      const data = await request('http://localhost:5000/contactor/event/getEvents', 'get', null, {})
       console.log(data.getAllCompanies)
-      setOrgs(data.getAllCompanies)
+      setEvents(data.getAllEvents)
     }catch(e){
       console.log(e)
     }
@@ -38,19 +38,15 @@ const EventPage = () => {
       />
       */}
 
-      {!loading && orgs && orgs.map((org, index) => {
+      {!loading && events && events.map((ev, index) => {
         return (
           <EventCard
             key={index}
             residentPreviewImage="https://english.rikkyo.ac.jp/news/2018/dn4ddm0000001fpl-img/dn4ddm0000001fpr.jpg"
-            residentBuilding={org.building}
-            residentFloor={org.floor}
-            residentName={org.companyName}
-            residentDescription={org.direction}
-            residentTimeStart={org.scheduleStart}
-            residentTimeEnd={org.scheduleEnd}
-            residentSiteUrl={org.site}
-            residentId ={org._id}
+            
+            residentName={ev.eventName}
+            
+            residentId ={ev._id}
           />
         )
       })}

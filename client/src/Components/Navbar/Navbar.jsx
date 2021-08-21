@@ -53,9 +53,16 @@ const Navbar = () => {
           </div>
         </Link>
         <NavButton>Главная</NavButton>
+        {isAuthenticated && 
         <Link to={profileLink}>
           <NavButton>Личный кабинет</NavButton>
         </Link>
+        }
+        {!isAuthenticated && 
+        <Link to="/auth">
+          <NavButton>Войти</NavButton>
+        </Link>
+        }
         <div className="dropdown">
           <NavButton>Мероприятия</NavButton>
           <div className="dropdown-content">
