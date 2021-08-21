@@ -17,13 +17,65 @@ const AdminPage = () => {
                     </div>
                     <div className="flex flex-row my-3 relative top-2 left-5">
                         <button class="">Заявки на мероприятия</button>
+                        <button class="my-2 mx-10">Расписание мероприятий</button>
                         <button class="my-2 mx-10">Регистрация организаций</button>
                         <button class="my-2 mx-10">Рассылка</button>
                     </div>
-                    <div class="flex flex-col col-auto my-3 items-center bg-green-100 w-5/6 h-full">
-                        
+                    <div class="flex flex-col col-auto my-3 items-center bg-green-100 w-5/6 h-2/3 overflow-scroll">
+                        {type===1 && 
+                            <>
+                                <div className="flex flex-row my-5 h-1/3 w-3/6 bg-white relative rounded-lg shadow-md">
+                                    <div className="flex mx-2 flex-col  my-5 w-full">
+                                        <h5 class="text-md  text-black font-medium">IT Camp</h5> 
+                                        <span class="text-sm my-1 text-black">Соревнование по спортивному программированию</span>
+                                        <span class="text-sm text-black">Дата: 27/09 9:00-10:00</span>
+                                        <span class="text-sm text-black">Место: Строение 1, кабинет 1-404</span>
+                                        <span class="text-sm my-1 text-black">Контакты: Дмитриев Максим Сергеевич, +79323332211</span>
+                                    </div>
+                                    <div className=" w-full">
+                                        <button className="absolute bottom-2 right-3 border-2 border-green-100 px-1 py-1 hover:border-green-400 hover:bg-green-400 hover:text-white">Связаться</button>
+                                    </div>
+                                </div>
+                                <div className="flex flex-row my-5 h-1/3 w-3/6 bg-white relative rounded-lg shadow-md">
+                                    <div className="flex mx-2 flex-col  my-5 w-full">
+                                        <h5 class="text-md  text-black font-medium">IT Camp</h5> 
+                                        <span class="text-sm my-1 text-black">Соревнование по спортивному программированию</span>
+                                        <span class="text-sm text-black">Дата: 27/09 9:00-10:00</span>
+                                        <span class="text-sm text-black">Место: Строение 1, кабинет 1-404</span>
+                                        <span class="text-sm my-1 text-black">Контакты: Дмитриев Максим Сергеевич, +79323332211</span>
+                                    </div>
+                                    <div className=" w-full">
+                                        <button className="absolute bottom-2 right-3 border-2 border-green-100 px-1 py-1 hover:border-green-400 hover:bg-green-400 hover:text-white">Связаться</button>
+                                    </div>
+                                </div>
+                                <div className="flex flex-row my-5 h-1/3 w-3/6 bg-white relative rounded-lg shadow-md">
+                                    <div className="flex mx-2 flex-col  my-5 w-full">
+                                        <h5 class="text-md  text-black font-medium">IT Camp</h5> 
+                                        <span class="text-sm my-1 text-black">Соревнование по спортивному программированию</span>
+                                        <span class="text-sm text-black">Дата: 27/09 9:00-10:00</span>
+                                        <span class="text-sm text-black">Место: Строение 1, кабинет 1-404</span>
+                                        <span class="text-sm my-1 text-black">Контакты: Дмитриев Максим Сергеевич, +79323332211</span>
+                                    </div>
+                                    <div className=" w-full">
+                                        <button className="absolute bottom-2 right-3 border-2 border-green-100 px-1 py-1 hover:border-green-400 hover:bg-green-400 hover:text-white">Связаться</button>
+                                    </div>
+                                </div>
+                                <div className="flex flex-row my-5 h-1/3 w-3/6 bg-white relative rounded-lg shadow-md">
+                                    <div className="flex mx-2 flex-col  my-5 w-full">
+                                        <h5 class="text-md  text-black font-medium">IT Camp</h5> 
+                                        <span class="text-sm my-1 text-black">Соревнование по спортивному программированию</span>
+                                        <span class="text-sm text-black">Дата: 27/09 9:00-10:00</span>
+                                        <span class="text-sm text-black">Место: Строение 1, кабинет 1-404</span>
+                                        <span class="text-sm my-1 text-black">Контакты: Дмитриев Максим Сергеевич, +79323332211</span>
+                                    </div>
+                                    <div className=" w-full">
+                                        <button className="absolute bottom-2 right-3 border-2 border-green-100 px-1 py-1 hover:border-green-400 hover:bg-green-400 hover:text-white">Связаться</button>
+                                    </div>
+                                </div>
+                            </>
+                            
+                        }
                     </div>
-                    
                 </div>
             </div>
             </div>
