@@ -29,12 +29,12 @@ const ContactUs = () => {
           <p>+ 7 (999) 999-99-99</p>
           <p>johndoe@mail.com</p>
         </div>
-        <Form customClasses="col-start-5 col-end-7 row-start-1 row-end-4">
-          <Input type="text" placeholder="Имя" />
-          <Input type="tel" placeholder="Телефон" />
-          <Input type="email" placeholder="E-mail" />
-          <Input type="text" placeholder="Организация" />
-          <TextArea placeholder="Комментарий" resize={false}/>
+        <Form custom="col-start-5 col-end-7 row-start-1 row-end-4">
+          <Input custom="w-full" type="text" placeholder="Имя"/>
+          <Input custom="w-full" type="tel" placeholder="Телефон" />
+          <Input custom="w-full" type="email" placeholder="E-mail" />
+          <Input custom="w-full" type="text" placeholder="Организация" />
+          <TextArea custom="w-full" placeholder="Комментарий" resize={false}/>
           <MyButton additionalClasses="text-xl text-green-700 bg-white rounded-2xl">Связаться</MyButton>
         </Form>
       </div>

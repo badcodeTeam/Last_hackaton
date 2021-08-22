@@ -97,6 +97,7 @@ const Chat = () => {
               minLength={9}
               debounceTimeout={1000}
               onChange={(event) => {
+                if(event.target.value.trim != '')
                 getOrganizationInfo(event.target.value);
               }}
               className="block text-sm py-3 px-4 rounded-lg w-1/2 border outline-none"
