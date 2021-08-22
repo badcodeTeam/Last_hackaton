@@ -4,7 +4,7 @@ const ApiError = require('../handler/apiError')
 
 class TicketService {
 
-    async addTicket(legalName, inn, kpp, legalAdress, name, email, number,type) {
+    async addTicket(legalName, inn, kpp, ogrn, legalAdress, name, email, number,type) {
         try {
             const createTicket = await Ticket.create({legalName, inn, kpp, ogrn, legalAdress, name, email, number,type})
             return createTicket
