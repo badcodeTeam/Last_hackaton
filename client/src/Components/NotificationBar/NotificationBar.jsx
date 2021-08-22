@@ -17,7 +17,7 @@ const NotificationBar = () => {
   return (
     <CSSTransition in={isActive} timeout={0} classNames="notification-bar">
       <div
-        className="border border-green-400 p-2 rounded-md flex justify-center align-center notification-bar absolute top-0 right-0 -translate-y-1/2"
+        className="border border-green-400 p-2 rounded-md flex justify-center align-center notification-bar"
         onClick={() => {
           setActive(!isActive);
         }}

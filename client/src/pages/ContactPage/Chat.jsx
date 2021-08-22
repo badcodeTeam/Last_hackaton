@@ -8,12 +8,40 @@ import TimePicker from "react-time-picker";
 import Calendar from "react-calendar";
 import Select from "../../Components/UI/Select";
 import Form from "../../Components/UI/Form";
+import { useHttp } from "../../utils";
 
 const Chat = () => {
   const [colapseEventActive, setColapseEventActive] = useState(false);
   const [colapseResidentActive, setColapseResidentActive] = useState(false);
-  const [inn, setInn] = useState("");
   const [isFlipped, setIsFlipped] = useState(false);
+  const { loading, request } = useHttp();
+  const [suggestions, setSuggestions] = useState([]);
+
+  const getOrganizationInfo = async (residentInput) => {
+    var url =
+      "https://suggestions.dadata.ru/suggestions/api/4_1/rs/findById/party";
+    var token = "1140dd7317f6016dd064dbff2250cb8624cb9494";
+    var query = residentInput.trim();
+
+    var options = {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: "Token " + token,
+      },
+      body: JSON.stringify({ query: query }),
+    };
+
+    fetch(url, options)
+      .then((response) => response.json())
+      .then((result) => {
+        setSuggestions([...result.suggestions]);
+        setIsFlipped(true);
+      })
+      .catch((error) => console.log("error", error));
+  };
 
   const renderConditionally = () => {
     if (colapseEventActive) {
@@ -54,23 +82,28 @@ const Chat = () => {
 
     if (colapseResidentActive)
       return (
-        <ReactCardFlip containerClassName="flex-grow h-full" isFlipped={isFlipped}>
+        <ReactCardFlip
+          containerClassName="flex-grow h-full"
+          isFlipped={isFlipped}
+        >
           <Form custom="h-full">
             <label>Введите ИНН или ОГРН</label>
             <DebounceInput
               minLength={9}
               debounceTimeout={1000}
               onChange={(event) => {
-                setInn(event.target.value);
-                setIsFlipped(true);
+                getOrganizationInfo(event.target.value);
               }}
               className="block text-sm py-3 px-4 rounded-lg w-1/2 border outline-none"
             ></DebounceInput>
           </Form>
-          <ul className="w-full h-full bg-black">
-            <li>
-
-            </li>
+          <ul className="w-full h-full bg-green-100 overflow-auto">
+            <h1 className="text-center text-2xl">
+              Выберите реквизиты относящиеся к вашей организации:
+            </h1>
+            {suggestions.map((suggestion) => {
+              <h1>{suggestion.value}</h1>;
+            })}
           </ul>
         </ReactCardFlip>
       );
@@ -103,7 +136,7 @@ const Chat = () => {
               setColapseResidentActive(!colapseResidentActive);
               if (colapseEventActive)
                 setColapseEventActive(!colapseEventActive);
-                setIsFlipped(false);
+              setIsFlipped(false);
             }}
             additionalClasses="bg-green-400 text-white rounded-xl"
           >
@@ -114,7 +147,7 @@ const Chat = () => {
               setColapseEventActive(!colapseEventActive);
               if (colapseResidentActive)
                 setColapseResidentActive(!colapseResidentActive);
-                setIsFlipped(false);
+              setIsFlipped(false);
             }}
             additionalClasses="bg-green-400 text-white rounded-xl"
           >
