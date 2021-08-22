@@ -56,9 +56,7 @@ const AdminPage = () => {
                     </div>
                     <div className="flex flex-row my-3 relative top-2 left-5">
                         <button class="" onClick={e=> setType(1)}>Заявки на мероприятия</button>
-                        <button class="my-2 mx-10" onClick={e=> setType(2)}>Расписание мероприятий</button>
                         <button class="my-2 mx-10" onClick={e=> setType(3)}>Регистрация организаций</button>
-                        <button class="my-2 mx-10" onClick={e=> setType(4)}>Рассылка</button>
                     </div>
                     <div class="flex flex-col col-auto my-3 items-center bg-green-100 w-5/6 h-2/3 overflow-scroll">
                         {type===1 && 
