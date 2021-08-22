@@ -11,13 +11,12 @@ const NotificationBar = () => {
     { topic: "First notification", text: "First notification text" },
     { topic: "Second notification", text: "Second notification text" },
     { topic: "Third notification", text: "Third notification text" },
-    { topic: "Fourth notification", text: "Fourth notification text" }
   ]);
 
   return (
     <CSSTransition in={isActive} timeout={0} classNames="notification-bar">
       <div
-        className="border border-green-400 p-2 rounded-md flex justify-center align-center notification-bar"
+        className="border border-green-400 p-2 rounded-md flex justify-center align-center notification-bar self-start z-10"
         onClick={() => {
           setActive(!isActive);
         }}

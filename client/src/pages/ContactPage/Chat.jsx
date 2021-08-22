@@ -9,7 +9,7 @@ import Calendar from "react-calendar";
 import Select from "../../Components/UI/Select";
 import Form from "../../Components/UI/Form";
 import { useHttp } from "../../utils";
-import {AuthContext} from '../../utils/context/Auth.context'
+import { AuthContext } from "../../utils/context/Auth.context";
 import TextArea from "../../Components/UI/TextArea";
 
 const Chat = () => {
@@ -19,7 +19,8 @@ const Chat = () => {
   const { loading, request } = useHttp();
   const [suggestions, setSuggestions] = useState([]);
   const [requisites, setRequisites] = useState({});
-  const {name, email, number} = useContext(AuthContext);
+  const { name, email, number } = useContext(AuthContext);
+  const [select, setSelect] = useState("");
 
   const getOrganizationInfo = async (residentInput) => {
     var url =
@@ -48,6 +49,39 @@ const Chat = () => {
       .catch((error) => console.log("error", error));
   };
 
+  const sendTicket = async (e) => {
+    e.preventDefault();
+
+    var url = "http://localhost:5000/contactor/ticket/addTicket";
+    const ticket = {
+      legalName: requisites.legalAdress,
+      inn: requisites.inn,
+      kpp: requisites.kpp,
+      ogrn: requisites.ogrn,
+      name: name,
+      email: email,
+      number: number,
+      type: select,
+    };
+
+    var options = {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({ ticket: ticket }),
+    };
+
+    fetch(url, options)
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => console.log("error", error));
+  };
+
   const renderConditionally = () => {
     if (colapseEventActive) {
       return (
@@ -66,7 +100,7 @@ const Chat = () => {
               maxTime="23:00:00"
               minTime="00:00:00"
               disableClock={true}
-              className=" bg-white"
+              className="bg-white"
             ></TimePicker>
           </div>
           <Select>
@@ -97,25 +131,41 @@ const Chat = () => {
               minLength={9}
               debounceTimeout={1000}
               onChange={(event) => {
-                if(event.target.value.trim != '')
-                getOrganizationInfo(event.target.value);
+                if (event.target.value.trim != "")
+                  getOrganizationInfo(event.target.value);
               }}
               className="block text-sm py-3 px-4 rounded-lg w-1/2 border outline-none"
             ></DebounceInput>
           </Form>
           {Object.keys(requisites).length !== 0 ? (
             <Form custom="h-full">
-              <h1 className="text-xl font-black">Итоговый запрос на аренду: </h1>
+              <h1 className="text-xl font-black">
+                Итоговый запрос на аренду:{" "}
+              </h1>
               <Input value={requisites.legalName} custom="w-6/12"></Input>
-              <Input value={'ИНН: '+requisites.inn} custom="w-6/12"></Input>
-              <Input value={'КПП: '+requisites.kpp} custom="w-6/12"></Input>
-              <Input value={'ОГРН: ' +requisites.ogrn} custom="w-6/12"></Input>
+              <Input value={"ИНН: " + requisites.inn} custom="w-6/12"></Input>
+              <Input value={"КПП: " + requisites.kpp} custom="w-6/12"></Input>
+              <Input value={"ОГРН: " + requisites.ogrn} custom="w-6/12"></Input>
               <Input value={requisites.legalAdress} custom="w-6/12"></Input>
               <Input value={name} custom="w-6/12"></Input>
               <Input value={email} custom="w-6/12"></Input>
               <Input value={number} custom="w-6/12"></Input>
               <TextArea placeholder="Комментарий" custom="w-6/12"></TextArea>
-              <MyButton additionalClasses="bg-white border text-green-400 rounded-xl w-6/12">Запрос</MyButton>
+              <Select
+                custom="w-6/12"
+                onChange={(e) => setSelect(e.target.value)}
+              >
+                <option>Временно</option>
+                <option>Помесячно</option>
+              </Select>
+              <MyButton
+                additionalClasses="bg-white border text-green-400 rounded-xl w-6/12"
+                onClick={(e) => {
+                  sendTicket(e);
+                }}
+              >
+                Запрос
+              </MyButton>
             </Form>
           ) : (
             <ul className="w-full h-6/12 bg-green-100 overflow-auto">
@@ -157,7 +207,7 @@ const Chat = () => {
             </li>
           </ul>
           <div className="flex mt-5">
-            <Input placeholder="Сообщение"></Input>
+            <Input custom="w-full" placeholder="Сообщение"></Input>
             <MyButton additionalClasses="bg-green-400 text-white rounded-xl ml-1">
               Отправить
             </MyButton>
@@ -179,7 +229,7 @@ const Chat = () => {
             }}
             additionalClasses="bg-green-400 text-white rounded-xl"
           >
-            Стать постоянным резидентом
+            Стать резидентом
           </MyButton>
           <MyButton
             onClick={() => {
