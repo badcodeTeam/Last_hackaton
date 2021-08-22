@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState, useContext } from "react";
 import MyButton from "../../Components/UI/MyButton";
 import Input from "../../Components/UI/Input";
 import "./Chat.css";
@@ -9,6 +9,8 @@ import Calendar from "react-calendar";
 import Select from "../../Components/UI/Select";
 import Form from "../../Components/UI/Form";
 import { useHttp } from "../../utils";
+import {AuthContext} from '../../utils/context/Auth.context'
+import TextArea from "../../Components/UI/TextArea";
 
 const Chat = () => {
   const [colapseEventActive, setColapseEventActive] = useState(false);
@@ -17,6 +19,7 @@ const Chat = () => {
   const { loading, request } = useHttp();
   const [suggestions, setSuggestions] = useState([]);
   const [requisites, setRequisites] = useState({});
+  const {name, email, number} = useContext(AuthContext);
 
   const getOrganizationInfo = async (residentInput) => {
     var url =
@@ -107,8 +110,10 @@ const Chat = () => {
               <Input value={requisites.kpp} custom="w-6/12"></Input>
               <Input value={requisites.ogrn} custom="w-6/12"></Input>
               <Input value={requisites.legalAdress} custom="w-6/12"></Input>
-              <Input custom="w-6/12"></Input>
-              <Input custom="w-6/12"></Input>
+              <Input value={name} custom="w-6/12"></Input>
+              <Input value={email} custom="w-6/12"></Input>
+              <Input value={number} custom="w-6/12"></Input>
+              <TextArea></TextArea>
             </Form>
           ) : (
             <ul className="w-full h-6/12 bg-green-100 overflow-auto">
