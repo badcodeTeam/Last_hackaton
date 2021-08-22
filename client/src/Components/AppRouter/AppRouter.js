@@ -7,13 +7,13 @@ export const AppRouter = ({auth}) => {
         <Switch>
             {publicRoutes.map((route, index) => {
                 return(
-                    <Route key={index} path={route.path} component={route.Component} />
+                    <Route key={index} path={route.path} component={route.Component} exact/>
                 )
             })}
 
             {auth && authRoutes.map((route, index) => {
                 return(
-                    <Route key={index} path={route.path} component={route.Component} />
+                    <Route key={index} path={route.path} component={route.Component} exact/>
                 )
             })}
         </Switch>

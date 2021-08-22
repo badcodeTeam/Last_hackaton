@@ -24,7 +24,7 @@ const UEditProfile = () => {
                 Authorization: `Bearer ${token}`
             })
             console.log(created)
-            setUser(created.clientDto)
+            setUser(created.userData.clientDto)
         }catch(e){
             console.log(e)
         }
