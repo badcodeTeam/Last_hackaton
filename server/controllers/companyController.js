@@ -24,6 +24,7 @@ class CompanyController {
         try{
             console.log(req.body)
             const {ownerId,companyName, entrepreneur, direction, building, floor} = req.body
+            console.log(ownerId,companyName, entrepreneur, direction, building, floor)
             const createCompany = await CompanyService.addCompany(ownerId, companyName, entrepreneur, direction, building, floor)
             return res.json(createCompany)
         } catch (e) {

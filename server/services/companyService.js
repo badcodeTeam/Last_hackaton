@@ -22,7 +22,9 @@ class CompanyService {
             if(!user){
                 throw ApiError.BadRequestError('Пользователь не был найден')
             }
+            console.log(ownerId,companyName, entrepreneur, direction, building, floor)
             const createCompany = await Company.create({companyName, owner:ownerId, entrepreneur, direction, building, floor})
+            console.log(createCompany)
             const addRole = await User.findByIdAndUpdate(ownerId,{role:3})
             return {createCompany}
         } catch (e) {
