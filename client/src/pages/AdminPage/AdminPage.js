@@ -37,7 +37,7 @@ const AdminPage = () => {
 
     const getTickets = useCallback(async () => {
         try{
-            const data = await request('http://localhost:5000/contactor/tickets/getTickets', 'get', null, {
+            const data = await request('http://localhost:5000/contactor/ticket/getTickets', 'get', null, {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
                 Authorization: `Bearer ${token}`
