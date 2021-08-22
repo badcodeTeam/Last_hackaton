@@ -20,7 +20,7 @@ const Chat = () => {
   const [suggestions, setSuggestions] = useState([]);
   const [requisites, setRequisites] = useState({});
   const { name, email, number } = useContext(AuthContext);
-  const [select, setSelect] = useState("");
+  const [selecteed, setSelect] = useState('');
 
   const getOrganizationInfo = async (residentInput) => {
     var url =
@@ -54,15 +54,18 @@ const Chat = () => {
 
     var url = "http://localhost:5000/contactor/ticket/addTicket";
     const ticket = {
-      legalName: requisites.legalAdress,
+      legalName: requisites.legalName,
       inn: requisites.inn,
       kpp: requisites.kpp,
       ogrn: requisites.ogrn,
+      legalAdress: requisites.legalAdress,
       name: name,
       email: email,
       number: number,
-      type: select,
+      type: "permament",
     };
+
+    console.log(ticket)
 
     var options = {
       method: "POST",
