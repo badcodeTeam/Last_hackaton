@@ -8,11 +8,11 @@ import {SocketContext, socket} from './utils/context/socket';
 
 
 function App() {
-  const {login, logout, token, userId, role, ready} = useAuth()
+  const {login, logout, token, userId , role, name, number, email, ready} = useAuth()
   const isAuthenticated = !!token
   return (
     <AuthContext.Provider value={{
-      token, login, logout, userId, role, isAuthenticated,
+      token, login, logout, userId, role, isAuthenticated, name, number, email
     }}>
     <SocketContext.Provider value={socket}>
     <BrowserRouter>

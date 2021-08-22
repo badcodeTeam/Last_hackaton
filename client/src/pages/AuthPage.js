@@ -17,7 +17,7 @@ const AuthPage = () => {
                 email, password
             })
             
-                auth.login(data.token.accessToken, data.user.id, data.user.role)
+                auth.login(data.token.accessToken, data.user.id, data.user.role, data.user.name, data.user.number, data.user.email)
                 history.push(`/profile/${data.user.id}`)
                 console.log(data)
            
