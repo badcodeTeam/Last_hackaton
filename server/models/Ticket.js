@@ -4,6 +4,7 @@ const Ticket = new Schema({
     legalName: {type:String},                               
     inn: {type:String},                                    
     kpp: {type:String},     
+    ogrn: {type:String}, 
     legalAdress:{type:String},
     name: {type:String},
     email:{type:String},

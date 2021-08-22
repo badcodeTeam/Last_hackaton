@@ -6,7 +6,7 @@ class TicketService {
 
     async addTicket(legalName, inn, kpp, legalAdress, name, email, number,type) {
         try {
-            const createTicket = await Ticket.create({legalName, inn, kpp, legalAdress, name, email, number,type})
+            const createTicket = await Ticket.create({legalName, inn, kpp, ogrn, legalAdress, name, email, number,type})
             return createTicket
         } catch (e) {
             return e

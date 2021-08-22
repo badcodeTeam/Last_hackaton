@@ -8,8 +8,8 @@ class TicketController {
         //  http://localhost:5000/contactor/ticket/addTicket
         async addTicket (req, res, next) {
             try {
-                const {legalName, inn, kpp, legalAdress, name, email, number,type} = req.body
-                const createTicket = await ticketService.addTicket(legalName, inn, kpp, legalAdress, name, email, number,type)
+                const {legalName, inn, kpp, ogrn, legalAdress, name, email, number,type} = req.body
+                const createTicket = await ticketService.addTicket(legalName, inn, kpp, ogrn, legalAdress, name, email, number,type)
                 return res.json(createTicket)
             } catch (e) {
                 next(e)
