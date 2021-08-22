@@ -26,7 +26,7 @@ class PostController {
                 const {postHeader,text,companyName} = req.body;
                 const createPost = await PostService.addPostFromCompany(postHeader, text, decodedToken.id, companyName)
                 return res.json(createPost)
-            } catch (e) {
+            } catch (e) {   
                 next(e)
             }
         }
