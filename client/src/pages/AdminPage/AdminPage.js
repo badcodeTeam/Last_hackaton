@@ -16,14 +16,15 @@ const AdminPage = () => {
             companyName: '',
             entrepreneur: '',
             direction: '',
-            building: '',
-            floor: '',
+            building: 0,
+            floor: 0,
             ownerId: ''
         })
 
     const orgCreate = async e => {
         try{
             e.preventDefault();
+            
             const data = await request('http://localhost:5000/contactor/company/addCompany', 'post', {...form}, {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
@@ -79,7 +80,7 @@ const AdminPage = () => {
                         {type===1 && tickets && tickets.map(ticket => {
                             return(
                                 <>
-                                    <Ticket key={ticket.name} ticket={ticket} />
+                                    <Ticket key={ticket._id} ticket={ticket} />
                                 </>
                             )
                         }) 
