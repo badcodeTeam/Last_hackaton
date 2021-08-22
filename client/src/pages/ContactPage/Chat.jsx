@@ -16,6 +16,7 @@ const Chat = () => {
   const [isFlipped, setIsFlipped] = useState(false);
   const { loading, request } = useHttp();
   const [suggestions, setSuggestions] = useState([]);
+  const [requisites, setRequisites] = useState({});
 
   const getOrganizationInfo = async (residentInput) => {
     var url =
@@ -39,6 +40,7 @@ const Chat = () => {
       .then((result) => {
         setSuggestions([...result.suggestions]);
         setIsFlipped(true);
+        console.log(result.suggestions);
       })
       .catch((error) => console.log("error", error));
   };
@@ -97,14 +99,44 @@ const Chat = () => {
               className="block text-sm py-3 px-4 rounded-lg w-1/2 border outline-none"
             ></DebounceInput>
           </Form>
-          <ul className="w-full h-full bg-green-100 overflow-auto">
-            <h1 className="text-center text-2xl">
-              Выберите реквизиты относящиеся к вашей организации:
-            </h1>
-            {suggestions.map((suggestion) => {
-              <h1>{suggestion.value}</h1>;
-            })}
-          </ul>
+          {Object.keys(requisites).length !== 0 ? (
+            <Form custom="h-full">
+              <h1 className="text-xl">Итоговый запрос на аренду аренды: </h1>
+              <Input value={requisites.legalName} custom="w-6/12"></Input>
+              <Input value={requisites.inn} custom="w-6/12"></Input>
+              <Input value={requisites.kpp} custom="w-6/12"></Input>
+              <Input value={requisites.ogrn} custom="w-6/12"></Input>
+              <Input value={requisites.legalAdress} custom="w-6/12"></Input>
+              <Input custom="w-6/12"></Input>
+              <Input custom="w-6/12"></Input>
+            </Form>
+          ) : (
+            <ul className="w-full h-6/12 bg-green-100 overflow-auto">
+              <h1 className="text-center text-2xl">
+                Выберите реквизиты относящиеся к вашей организации:
+              </h1>
+              {suggestions.map((suggestion) => (
+                <li
+                  className="bg-white m-5 p-5 cursor-pointer"
+                  onClick={() =>
+                    setRequisites({
+                      legalName: suggestion.data.name.full_with_opf,
+                      inn: suggestion.data.inn,
+                      kpp: suggestion.data.kpp,
+                      ogrn: suggestion.data.ogrn,
+                      legalAdress: suggestion.data.address.unrestricted_value,
+                    })
+                  }
+                >
+                  <h1>{suggestion.data.name.full_with_opf}</h1>
+                  <h2>ИНН: {suggestion.data.inn}</h2>
+                  <h2>КПП: {suggestion.data.kpp}</h2>
+                  <h2>ОГРН: {suggestion.data.ogrn}</h2>
+                  <h3>Адрес: {suggestion.data.address.unrestricted_value}</h3>
+                </li>
+              ))}
+            </ul>
+          )}
         </ReactCardFlip>
       );
 
