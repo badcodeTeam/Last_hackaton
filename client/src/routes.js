@@ -1,5 +1,5 @@
 import {AuthPage, RegisterPage} from './pages'
-import MainPage from './pages/MainPage/MainPage.jsx'
+import MainPage from './pages/MainPage'
 import UProfilePage from './pages/UProfilePage'
 import ContactPage from './pages/ContactPage/ContactPage.jsx'
 import ResidentsPage from './pages/ResidentPage/ResidentsPage.jsx'
@@ -19,7 +19,7 @@ export const publicRoutes = [
         Component: RegisterPage
     },
     {
-        path: '/main',
+        path: '/',
         Component: MainPage
     },
     {
@@ -34,7 +34,8 @@ export const publicRoutes = [
     {
         path: '/events',
         Component: EventPage
-    }
+    },
+    
 ]
 
 export const authRoutes = [

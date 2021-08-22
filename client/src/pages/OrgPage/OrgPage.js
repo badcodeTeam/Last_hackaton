@@ -4,6 +4,7 @@ import {useHttp} from "../../utils"
 import {AuthContext} from "../../utils/context/Auth.context"
 import { Link } from "react-router-dom";
 import { PostCard } from '../PostCard';
+import Select from '../../Components/UI/Select';
 
 
 const OrgPage = ({id}) => {
@@ -14,7 +15,9 @@ const OrgPage = ({id}) => {
     const orgId = useParams().id;
     const {request, loading} = useHttp()
     const {token, userId} = useContext(AuthContext)
-    const [stage, setStage] = useState(1)
+    const [type, setType] = useState(1)
+    const [userid, setUserid] = useState('')
+    const [role, setRole] = useState('')
 
     const getUser = useCallback(async () => {
         try{
@@ -51,8 +54,24 @@ const OrgPage = ({id}) => {
         }
     }
 
-    //6120a5a7f8f9406ce804733b 6120a5a7f8f9406ce804733b
-    // Сроки, масштабируемость
+    const changeStage = e => {
+        e.preventDefault()
+        setType(e.target.name)
+        console.log(type)
+    }
+
+    const addUser = async e=> {
+        try{
+            e.preventDefault()
+            const add = await  request('http://localhost:5000/contactor/company/addMember','post', {companyId: org._id, userId: userid, role: role}, {
+                Authorization: `Bearer ${token}`
+            })
+            console.log(add)
+        }catch(err){
+            console.log(err)
+        }
+    }
+
 
     return (
         <div className="container">
@@ -68,11 +87,12 @@ const OrgPage = ({id}) => {
                     <div class="flex flex-row col-auto my-3 w-full items-center justify-center">
                         {!loading && org && userId!==org.owner && <button> Связаться </button>}
                         {!loading && org && userId===org.owner && <Link to={`/edit/org/${orgId}`}><button> Редактировать </button></Link>}
-                        {!loading && org && userId===org.owner && <button className="mx-2"> Добавить сотрудника </button>}
+                        <button class="my-2 mx-10" onClick={e=> setType(2)}>Добавить сотрудника</button>
+                        <button class="my-2 mx-10" onClick={e=> setType(1)}>Посты</button>
                     </div>
                     <div class="flex flex-col col-auto my-3 items-center h-4/6 bg-green-100 overflow-y-scroll ">
                         <div className="my-5 w-full rounded-full flex flex-col  justify-center items-center">
-                        {!loading && posts && userId===org.owner && 
+                        {type===1 && !loading && posts && userId===org.owner  && 
                             <>
                                 <div className="w-5/6">
                                     <input name="field_name" className=" border border-2 rounded-r px-4 py-2 w-full  " type="text" placeholder="Заголовок" onChange={e => setPostHeader(e.target.value)} />
@@ -84,9 +104,21 @@ const OrgPage = ({id}) => {
                                 </div>
                             </>}
                         </div>
-                        {!loading && posts && posts.map(post => {
+                        {!loading && posts && type===1 && posts.map(post => {
                             return <PostCard key={post} post={post} />
                         })}
+
+                        {type===2 && !loading && org  && 
+                        <>
+                            <input name="field_name" className=" border border-2 rounded-r px-4 py-2 my-3 w-full " type="text" placeholder="Id пользователя" onChange={e => setUserid(e.target.value)} />
+                            <Select className=" border border-2 rounded-r px-4 py-2 my-3 w-5/6 " onChange={e => setRole(e.target.value)}>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                            </Select>
+                            <button className="py-3 my-2 w-64 text-xl text-white bg-green-500 rounded-2xl" onClick={addUser}>Добавить сотрудника</button>
+                        </>
+                        }
                     </div>
                 </div>
             </div>
