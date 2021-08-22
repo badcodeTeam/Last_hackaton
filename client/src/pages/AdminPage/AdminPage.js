@@ -1,15 +1,17 @@
-import React, {useState, useContext, useEffect} from 'react';
+import React, {useState, useContext, useEffect,useCallback} from 'react';
 import Select from '../../Components/UI/Select';
 import NumberFormat from 'react-number-format';
 import {useHttp} from "../../utils"
 import {AuthContext} from "../../utils/context/Auth.context"
 import {useHistory} from "react-router-dom"
+import Ticket from './Ticket';
 
 const AdminPage = () => {
     const {request} = useHttp()
     const {token, role} = useContext(AuthContext)
     const history = useHistory()
     const [type, setType] = useState(1)
+    const [tickets, setTickets] = useState([])
     const [form, setForm] = useState({
             companyName: '',
             entrepreneur: '',
@@ -33,15 +35,30 @@ const AdminPage = () => {
         }
     }
 
+    const getTickets = useCallback(async () => {
+        try{
+            const data = await request('http://localhost:5000/contactor/ticket/getTickets', 'get', null, {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                Authorization: `Bearer ${token}`
+            })
+            setTickets(data)
+        }catch(err){
+            console.log(err)
+        }
+    }, [request, token])
+
     const changeHandler = event => {
         setForm({ ...form , [event.target.name]: event.target.value})
     }
 
     useEffect(() => {
+        /*
         if(role !== 4){
             history.push('/')
-        }
-    }, [history, role])
+        }*/
+        getTickets()
+    }, [history, role,getTickets])
 
 
     return (
@@ -59,57 +76,14 @@ const AdminPage = () => {
                         <button class="my-2 mx-10" onClick={e=> setType(3)}>Регистрация организаций</button>
                     </div>
                     <div class="flex flex-col col-auto my-3 items-center bg-green-100 w-5/6 h-2/3 overflow-scroll">
-                        {type===1 && 
-                            <>
-                                <div className="flex flex-row my-5 h-1/3 w-3/6 bg-white relative rounded-lg shadow-md">
-                                    <div className="flex mx-2 flex-col  my-5 w-full">
-                                        <h5 class="text-md  text-black font-medium">IT Camp</h5> 
-                                        <span class="text-sm my-1 text-black">Соревнование по спортивному программированию</span>
-                                        <span class="text-sm text-black">Дата: 27/09 9:00-10:00</span>
-                                        <span class="text-sm text-black">Место: Строение 1, кабинет 1-404</span>
-                                        <span class="text-sm my-1 text-black">Контакты: Дмитриев Максим Сергеевич, +79323332211</span>
-                                    </div>
-                                    <div className=" w-full">
-                                        <button className="absolute bottom-2 right-3 border-2 border-green-100 px-1 py-1 hover:border-green-400 hover:bg-green-400 hover:text-white">Связаться</button>
-                                    </div>
-                                </div>
-                                <div className="flex flex-row my-5 h-1/3 w-3/6 bg-white relative rounded-lg shadow-md">
-                                    <div className="flex mx-2 flex-col  my-5 w-full">
-                                        <h5 class="text-md  text-black font-medium">IT Camp</h5> 
-                                        <span class="text-sm my-1 text-black">Соревнование по спортивному программированию</span>
-                                        <span class="text-sm text-black">Дата: 27/09 9:00-10:00</span>
-                                        <span class="text-sm text-black">Место: Строение 1, кабинет 1-404</span>
-                                        <span class="text-sm my-1 text-black">Контакты: Дмитриев Максим Сергеевич, +79323332211</span>
-                                    </div>
-                                    <div className=" w-full">
-                                        <button className="absolute bottom-2 right-3 border-2 border-green-100 px-1 py-1 hover:border-green-400 hover:bg-green-400 hover:text-white">Связаться</button>
-                                    </div>
-                                </div>
-                                <div className="flex flex-row my-5 h-1/3 w-3/6 bg-white relative rounded-lg shadow-md">
-                                    <div className="flex mx-2 flex-col  my-5 w-full">
-                                        <h5 class="text-md  text-black font-medium">IT Camp</h5> 
-                                        <span class="text-sm my-1 text-black">Соревнование по спортивному программированию</span>
-                                        <span class="text-sm text-black">Дата: 27/09 9:00-10:00</span>
-                                        <span class="text-sm text-black">Место: Строение 1, кабинет 1-404</span>
-                                        <span class="text-sm my-1 text-black">Контакты: Дмитриев Максим Сергеевич, +79323332211</span>
-                                    </div>
-                                    <div className=" w-full">
-                                        <button className="absolute bottom-2 right-3 border-2 border-green-100 px-1 py-1 hover:border-green-400 hover:bg-green-400 hover:text-white">Связаться</button>
-                                    </div>
-                                </div>
-                                <div className="flex flex-row my-5 h-1/3 w-3/6 bg-white relative rounded-lg shadow-md">
-                                    <div className="flex mx-2 flex-col  my-5 w-full">
-                                        <h5 class="text-md  text-black font-medium">IT Camp</h5> 
-                                        <span class="text-sm my-1 text-black">Соревнование по спортивному программированию</span>
-                                        <span class="text-sm text-black">Дата: 27/09 9:00-10:00</span>
-                                        <span class="text-sm text-black">Место: Строение 1, кабинет 1-404</span>
-                                        <span class="text-sm my-1 text-black">Контакты: Дмитриев Максим Сергеевич, +79323332211</span>
-                                    </div>
-                                    <div className=" w-full">
-                                        <button className="absolute bottom-2 right-3 border-2 border-green-100 px-1 py-1 hover:border-green-400 hover:bg-green-400 hover:text-white">Связаться</button>
-                                    </div>
-                                </div>
-                            </>
+                        {type===1 && tickets && tickets.map(ticket => {
+                            return(
+                                <>
+                                    <Ticket key={ticket.name} ticket={ticket} />
+                                </>
+                            )
+                        }) 
+                            
                         }
                         {type===3 && 
                             <>
