@@ -105,16 +105,17 @@ const Chat = () => {
           </Form>
           {Object.keys(requisites).length !== 0 ? (
             <Form custom="h-full">
-              <h1 className="text-xl">Итоговый запрос на аренду аренды: </h1>
+              <h1 className="text-xl font-black">Итоговый запрос на аренду: </h1>
               <Input value={requisites.legalName} custom="w-6/12"></Input>
-              <Input value={requisites.inn} custom="w-6/12"></Input>
-              <Input value={requisites.kpp} custom="w-6/12"></Input>
-              <Input value={requisites.ogrn} custom="w-6/12"></Input>
+              <Input value={'ИНН: '+requisites.inn} custom="w-6/12"></Input>
+              <Input value={'КПП: '+requisites.kpp} custom="w-6/12"></Input>
+              <Input value={'ОГРН: ' +requisites.ogrn} custom="w-6/12"></Input>
               <Input value={requisites.legalAdress} custom="w-6/12"></Input>
               <Input value={name} custom="w-6/12"></Input>
               <Input value={email} custom="w-6/12"></Input>
               <Input value={number} custom="w-6/12"></Input>
-              <TextArea></TextArea>
+              <TextArea placeholder="Комментарий" custom="w-6/12"></TextArea>
+              <MyButton additionalClasses="bg-white border text-green-400 rounded-xl w-6/12">Запрос</MyButton>
             </Form>
           ) : (
             <ul className="w-full h-6/12 bg-green-100 overflow-auto">
