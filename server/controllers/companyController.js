@@ -22,9 +22,7 @@ class CompanyController {
     //  http://localhost:5000/contactor/company/addCompany
     async addCompany (req, res, next) {
         try{
-            console.log(req.body)
             const {ownerId,companyName, entrepreneur, direction, building, floor} = req.body
-            console.log(ownerId,companyName, entrepreneur, direction, building, floor)
             const createCompany = await CompanyService.addCompany(ownerId, companyName, entrepreneur, direction, building, floor)
             return res.json(createCompany)
         } catch (e) {
