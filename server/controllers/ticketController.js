@@ -9,6 +9,7 @@ class TicketController {
         async addTicket (req, res, next) {
             try {
                 const {legalName, inn, kpp, ogrn, legalAdress, name, email, number,type} = req.body
+                console.log(legalName, inn, kpp, ogrn, legalAdress, name, email, number,type)
                 const createTicket = await ticketService.addTicket(legalName, inn, kpp, ogrn, legalAdress, name, email, number,type)
                 return res.json(createTicket)
             } catch (e) {
