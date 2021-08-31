@@ -36,10 +36,10 @@ const UEditProfile = () => {
                 Authorization: `Bearer ${token}`
             })
             console.log(created)
-            setOrg(created.company)
+            setOrg(created.companyData)
 
             let infoUsers = []
-            for(let i = 0; i < created.company.members.length; i++){
+            for(let i = 0; i < created.companyData.members.length; i++){
                 const founded = await request(`http://localhost:5000/contactor/user/getClientInfo/${created.company.members[i]}`, 'get', null, {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
